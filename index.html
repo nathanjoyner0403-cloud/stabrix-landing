@@ -752,11 +752,42 @@
     .delay-4 { transition-delay: 0.4s; }
     .delay-5 { transition-delay: 0.5s; }
 
+    /* ─── PROBLEM ─── */
+    .problem-section { background: var(--white); padding: 6rem 7%; border-top: 1px solid var(--gray-200); }
+    .problem-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+    .problem-stats { display: flex; gap: 2rem; flex-wrap: wrap; }
+    .pstat-num { font-family: var(--font-display); font-size: 1.9rem; color: var(--blue-700); line-height: 1; }
+    .pstat-label { font-size: 0.76rem; color: var(--gray-400); font-weight: 500; text-transform: uppercase; letter-spacing: 0.04em; margin-top: 0.3rem; max-width: 120px; line-height: 1.4; }
+    .problem-card { background: var(--gray-50); border: 1px solid var(--gray-200); border-radius: 20px; overflow: hidden; }
+    .problem-card-header { padding: 1.25rem 1.75rem; background: var(--off-white); border-bottom: 1px solid var(--gray-200); }
+    .problem-tag { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gray-600); }
+    .problem-list { list-style: none; padding: 0.5rem 0; }
+    .problem-item { display: flex; gap: 1rem; align-items: flex-start; padding: 1.1rem 1.75rem; border-bottom: 1px solid var(--gray-200); transition: background 0.2s; }
+    .problem-item:last-child { border-bottom: none; }
+    .problem-item:hover { background: var(--white); }
+    .x-icon { width: 26px; height: 26px; flex-shrink: 0; background: #fef2f2; color: #dc2626; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: 700; margin-top: 2px; }
+    .problem-item strong { display: block; font-size: 0.9rem; color: var(--gray-800); margin-bottom: 0.2rem; }
+    .problem-item p { font-size: 0.82rem; color: var(--gray-600); line-height: 1.5; font-weight: 300; }
+    /* ─── SOLUTION ─── */
+    .solution-section { background: var(--off-white); padding: 6rem 7%; border-top: 1px solid var(--gray-200); }
+    .solution-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; }
+    .solution-card { background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius); padding: 1.75rem 1.5rem; transition: all 0.25s; }
+    .solution-card:hover { box-shadow: var(--shadow-md); transform: translateY(-3px); border-color: var(--blue-100); }
+    .solution-card-accent { background: var(--blue-600); border-color: var(--blue-600); }
+    .solution-card-accent h3 { color: var(--white); }
+    .solution-card-accent p { color: rgba(255,255,255,0.75); }
+    .solution-card h3 { font-size: 0.95rem; font-weight: 600; color: var(--blue-900); margin: 1rem 0 0.5rem; }
+    .solution-card p { font-size: 0.83rem; color: var(--gray-600); line-height: 1.6; font-weight: 300; }
+    .sol-icon { width: 50px; height: 50px; background: rgba(255,255,255,0.18); border-radius: 12px; display: flex; align-items: center; justify-content: center; }
+    .sol-icon-light { background: var(--light-blue); }
+
     /* ─── RESPONSIVE ─── */
     @media (max-width: 900px) {
       .hero { grid-template-columns: 1fr; padding: 120px 7% 5rem; gap: 3rem; }
       .hero-visual { height: auto; }
       .overview-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .problem-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+      .solution-grid { grid-template-columns: 1fr 1fr; }
       .benefits-grid { grid-template-columns: 1fr 1fr; }
       .trust-grid { grid-template-columns: 1fr 1fr; }
       .testimonial-row { grid-template-columns: 1fr; }
@@ -776,6 +807,8 @@
       .visuals-grid { grid-template-columns: 1fr; }
       .vis-card-main { grid-column: auto; }
       footer { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
+      .solution-grid { grid-template-columns: 1fr; }
+      .problem-stats { gap: 1.25rem; }
     }
   </style>
 </head>
@@ -785,9 +818,9 @@
   <nav id="navbar">
     <a href="#" class="nav-logo">Sta<span>brix</span></a>
     <ul class="nav-links">
-      <li><a href="#overview">Product</a></li>
+      <li><a href="#problem">Problem</a></li>
+      <li><a href="#solution">Solution</a></li>
       <li><a href="#benefits">Benefits</a></li>
-      <li><a href="#science">Science</a></li>
       <li><a href="#cta" class="btn btn-primary" style="padding:0.5rem 1.25rem;font-size:0.83rem;">Shop Now</a></li>
     </ul>
     <button class="nav-mobile btn btn-outline" style="padding:0.5rem 1.1rem;font-size:0.83rem;">Menu</button>
@@ -798,9 +831,9 @@
     <div class="hero-content">
       <div class="hero-badge">Medical-Grade Technology</div>
       <h1>Stronger Support<br />for <em>Every Step.</em></h1>
-      <p class="hero-subtitle">Stabrix carbon fiber insoles are designed to stabilize your foot, reduce pain, and support recovery from injuries. Built with durable carbon fiber technology, they provide medical-grade support without the high cost of custom orthotics.</p>
+      <p class="hero-subtitle">Stabrix carbon fiber insoles are designed to stabilize your foot, reduce pain, and support recovery from injuries. Built with durable carbon fiber and available in multiple sizes and support levels, they provide medical-grade support without the high cost of custom orthotics. Whether you are recovering from an injury or looking for everyday stability, Stabrix helps you move with confidence.</p>
       <div class="hero-cta">
-        <a href="#cta" class="btn btn-primary btn-large">Shop Now
+        <a href="#cta" class="btn btn-primary btn-large">Shop Stabrix Insoles
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
         <a href="#overview" class="btn btn-outline btn-large">Learn More</a>
@@ -897,6 +930,111 @@
           </div>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- PROBLEM -->
+  <section class="problem-section" id="problem">
+    <div class="problem-inner">
+      <div class="problem-text fade-up">
+        <div class="section-label">The Problem</div>
+        <h2>Most Insoles Only Provide <em>Cushioning,</em> Not Real Support</h2>
+        <p style="font-size:1rem;color:var(--gray-600);line-height:1.8;font-weight:300;margin-bottom:1rem;">Standard foam and gel insoles are designed for comfort — but they do nothing to control harmful foot motion. For people dealing with chronic pain, recovering from injury, or managing conditions like plantar fasciitis, cushioning alone is not enough.</p>
+        <p style="font-size:1rem;color:var(--gray-600);line-height:1.8;font-weight:300;margin-bottom:2rem;">Without proper structural support, your foot continues to overpronate or supinate with every step. This places excessive strain on the heel, arch, ankle, and knee — turning everyday walking into a source of ongoing pain and slow recovery.</p>
+        <div class="problem-stats">
+          <div class="problem-stat">
+            <div class="pstat-num">1 in 5</div>
+            <div class="pstat-label">Adults experience chronic foot pain</div>
+          </div>
+          <div class="problem-stat">
+            <div class="pstat-num">$800+</div>
+            <div class="pstat-label">Average cost of custom orthotics</div>
+          </div>
+          <div class="problem-stat">
+            <div class="pstat-num">60%</div>
+            <div class="pstat-label">Of injuries stem from poor foot mechanics</div>
+          </div>
+        </div>
+      </div>
+      <div class="problem-visual fade-up delay-2">
+        <div class="problem-card">
+          <div class="problem-card-header">
+            <span class="problem-tag">Common Insole Failure Points</span>
+          </div>
+          <ul class="problem-list">
+            <li class="problem-item">
+              <span class="x-icon">✕</span>
+              <div>
+                <strong>No motion control</strong>
+                <p>Foam compresses but does not stabilize — your foot still rolls inward or outward with each step.</p>
+              </div>
+            </li>
+            <li class="problem-item">
+              <span class="x-icon">✕</span>
+              <div>
+                <strong>Short lifespan</strong>
+                <p>Gel and foam break down within weeks, losing any supportive benefit they once offered.</p>
+              </div>
+            </li>
+            <li class="problem-item">
+              <span class="x-icon">✕</span>
+              <div>
+                <strong>One-size approach</strong>
+                <p>Generic insoles ignore individual foot anatomy and provide no targeted arch or heel support.</p>
+              </div>
+            </li>
+            <li class="problem-item">
+              <span class="x-icon">✕</span>
+              <div>
+                <strong>High cost of alternatives</strong>
+                <p>Custom orthotics can cost $400–$800 and require multiple specialist visits before fitting.</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOLUTION -->
+  <section class="solution-section" id="solution">
+    <div class="section-label fade-up" style="text-align:center;display:block;margin-bottom:0.75rem;">The Stabrix Solution</div>
+    <h2 class="fade-up delay-1" style="text-align:center;max-width:680px;margin:0 auto 1.5rem;">Carbon Fiber Stabilization.<br/><em>Real Support. Real Results.</em></h2>
+    <p class="fade-up delay-2" style="text-align:center;max-width:600px;margin:0 auto 3.5rem;font-size:1rem;color:var(--gray-600);line-height:1.8;font-weight:300;">Stabrix insoles are built on a rigid carbon fiber core that physically limits harmful foot motion — the root cause of most foot pain and injury. Unlike foam, carbon fiber does not compress or degrade. It holds its shape, redirects forces, and supports your foot the same way on day one as on day one thousand.</p>
+    <div class="solution-grid fade-up delay-2">
+      <div class="solution-card solution-card-accent">
+        <div class="sol-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h3>Structural Stability</h3>
+        <p>Carbon fiber controls pronation and supination — stopping the harmful motion that foam and gel cannot prevent.</p>
+      </div>
+      <div class="solution-card">
+        <div class="sol-icon sol-icon-light">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--blue-600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        </div>
+        <h3>Lightweight Design</h3>
+        <p>Despite its strength, carbon fiber adds almost no weight to your shoe. You get support without bulk or discomfort.</p>
+      </div>
+      <div class="solution-card">
+        <div class="sol-icon sol-icon-light">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--blue-600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        </div>
+        <h3>Affordable Alternative</h3>
+        <p>Get the structural benefits of custom orthotics at a fraction of the price — no specialist visit required.</p>
+      </div>
+      <div class="solution-card">
+        <div class="sol-icon sol-icon-light">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--blue-600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        </div>
+        <h3>Recovery Focused</h3>
+        <p>Designed with rehabilitation in mind — for post-surgical patients, injury recovery, and chronic condition management.</p>
+      </div>
+    </div>
+    <div class="fade-up delay-3" style="text-align:center;margin-top:3rem;">
+      <a href="#cta" class="btn btn-primary btn-large">Shop Stabrix Insoles
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
     </div>
   </section>
 
