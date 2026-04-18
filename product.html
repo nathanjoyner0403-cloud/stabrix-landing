@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shop Insoles — Stabrix</title>
+  <meta name="description" content="Browse Stabrix carbon fiber rehabilitation insoles. Choose your size and support level." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --white: #ffffff; --off-white: #f4f7fb; --light-blue: #e8f2fc;
+      --blue-100: #cce3f7; --blue-500: #2d7dd2; --blue-600: #1f6bbf;
+      --blue-700: #155a9e; --blue-900: #0b2e52; --gray-50: #f9fafb;
+      --gray-100: #f0f4f8; --gray-200: #dde3ea; --gray-400: #94a3b5;
+      --gray-600: #4f6176; --gray-800: #1e2f40; --carbon: #1a1f26;
+      --font-display: 'DM Serif Display', serif; --font-body: 'DM Sans', sans-serif;
+      --radius: 12px;
+      --shadow-sm: 0 1px 3px rgba(15,30,50,0.08);
+      --shadow-md: 0 4px 16px rgba(15,30,50,0.10);
+      --shadow-lg: 0 12px 40px rgba(15,30,50,0.13);
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-body); color: var(--gray-800); background: var(--white); line-height: 1.6; overflow-x: hidden; }
+
+    /* NAV */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 0 5%; height: 72px; background: rgba(255,255,255,0.95); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(200,218,240,0.5); box-shadow: 0 1px 3px rgba(15,30,50,0.06); }
+    .nav-logo { font-family: var(--font-display); font-size: 1.5rem; color: var(--blue-700); letter-spacing: -0.02em; text-decoration: none; }
+    .nav-logo span { color: var(--blue-500); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
+    .nav-links a { text-decoration: none; font-size: 0.875rem; font-weight: 500; color: var(--gray-600); transition: color 0.2s; }
+    .nav-links a:hover { color: var(--blue-600); }
+    .nav-links a.btn-primary { color: var(--white) !important; }
+    .nav-links a.active { color: var(--blue-600); font-weight: 600; }
+    .btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.75rem; border-radius: 9999px; font-family: var(--font-body); font-weight: 600; font-size: 0.9rem; cursor: pointer; border: none; transition: all 0.22s; text-decoration: none; }
+    .btn-primary { background: var(--blue-600); color: var(--white) !important; box-shadow: 0 4px 14px rgba(31,107,191,0.35); }
+    .btn-primary:hover { background: var(--blue-700); box-shadow: 0 6px 20px rgba(31,107,191,0.45); transform: translateY(-1px); }
+    .btn-outline { background: transparent; border: 2px solid var(--blue-500); color: var(--blue-600); }
+    .btn-outline:hover { background: var(--light-blue); }
+    .btn-large { padding: 1rem 2.25rem; font-size: 1rem; }
+
+    /* BREADCRUMB */
+    .breadcrumb { padding: 100px 7% 0; display: flex; gap: 0.5rem; align-items: center; font-size: 0.8rem; color: var(--gray-400); }
+    .breadcrumb a { color: var(--gray-400); text-decoration: none; transition: color 0.2s; }
+    .breadcrumb a:hover { color: var(--blue-600); }
+    .breadcrumb span { color: var(--blue-600); font-weight: 500; }
+
+    /* PAGE HEADER */
+    .page-header { padding: 2rem 7% 1rem; }
+    .page-header h1 { font-family: var(--font-display); font-size: clamp(2rem,3.5vw,2.8rem); color: var(--blue-900); letter-spacing: -0.02em; margin-bottom: 0.5rem; }
+    .page-header p { color: var(--gray-600); font-size: 1rem; font-weight: 300; }
+
+    /* PRODUCT GRID */
+    .product-grid-section { padding: 2rem 7% 6rem; }
+    .filter-row { display: flex; gap: 0.75rem; margin-bottom: 2.5rem; flex-wrap: wrap; align-items: center; }
+    .filter-label { font-size: 0.82rem; font-weight: 600; color: var(--gray-600); margin-right: 0.25rem; }
+    .filter-chip { padding: 0.45rem 1rem; border-radius: 9999px; border: 1.5px solid var(--gray-200); background: var(--white); font-size: 0.8rem; font-weight: 500; color: var(--gray-600); cursor: pointer; transition: all 0.2s; }
+    .filter-chip:hover, .filter-chip.active { border-color: var(--blue-500); background: var(--light-blue); color: var(--blue-700); }
+
+    .products { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+
+    .product-card { background: var(--white); border: 1px solid var(--gray-200); border-radius: 20px; overflow: hidden; transition: all 0.28s; cursor: pointer; }
+    .product-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-5px); border-color: var(--blue-100); }
+    .product-card-img { background: linear-gradient(160deg, var(--blue-900) 0%, #0d2340 100%); padding: 2.5rem 2rem; position: relative; overflow: hidden; }
+    .product-card-img::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255,255,255,0.018) 10px, rgba(255,255,255,0.018) 11px); }
+    .badge { position: absolute; top: 1rem; left: 1rem; background: var(--blue-600); color: var(--white); font-size: 0.68rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 0.28rem 0.7rem; border-radius: 9999px; z-index: 1; }
+    .badge-green { background: #16a34a; }
+    .badge-orange { background: #ea580c; }
+    .product-card-body { padding: 1.5rem; }
+    .product-name { font-family: var(--font-display); font-size: 1.2rem; color: var(--blue-900); margin-bottom: 0.3rem; }
+    .product-tagline { font-size: 0.82rem; color: var(--gray-400); margin-bottom: 1rem; font-weight: 400; }
+    .product-specs { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.25rem; }
+    .spec-chip { background: var(--light-blue); color: var(--blue-700); font-size: 0.7rem; font-weight: 600; padding: 0.25rem 0.6rem; border-radius: 9999px; }
+    .product-price-row { display: flex; align-items: center; justify-content: space-between; }
+    .product-price { font-family: var(--font-display); font-size: 1.5rem; color: var(--blue-700); }
+    .product-price-sub { font-size: 0.75rem; color: var(--gray-400); font-weight: 400; }
+
+    /* COMPARE TABLE */
+    .compare-section { background: var(--off-white); padding: 5rem 7%; border-top: 1px solid var(--gray-200); }
+    .compare-section h2 { font-family: var(--font-display); font-size: 2rem; color: var(--blue-900); letter-spacing: -0.02em; margin-bottom: 2.5rem; }
+    .compare-table { width: 100%; border-collapse: collapse; background: var(--white); border-radius: 16px; overflow: hidden; box-shadow: var(--shadow-sm); }
+    .compare-table th { background: var(--blue-900); color: var(--white); font-size: 0.85rem; font-weight: 600; padding: 1rem 1.25rem; text-align: left; }
+    .compare-table th:first-child { border-radius: 0; }
+    .compare-table td { padding: 0.9rem 1.25rem; font-size: 0.85rem; color: var(--gray-800); border-bottom: 1px solid var(--gray-100); }
+    .compare-table tr:last-child td { border-bottom: none; }
+    .compare-table tr:hover td { background: var(--off-white); }
+    .check { color: #16a34a; font-weight: 700; }
+    .cross { color: #dc2626; }
+
+    /* FOOTER */
+    footer { background: var(--blue-900); color: rgba(255,255,255,0.5); padding: 3rem 7%; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+    .footer-logo { font-family: var(--font-display); font-size: 1.3rem; color: var(--white); }
+    .footer-logo span { color: var(--blue-500); }
+    footer p { font-size: 0.8rem; }
+    .footer-links { display: flex; gap: 1.5rem; list-style: none; }
+    .footer-links a { color: rgba(255,255,255,0.45); font-size: 0.8rem; text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover { color: rgba(255,255,255,0.8); }
+
+    @media (max-width: 900px) { .products { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 600px) {
+      nav { padding: 0 6%; }
+      .nav-links { display: none; }
+      .products { grid-template-columns: 1fr; }
+      .breadcrumb, .page-header, .product-grid-section, .compare-section { padding-left: 6%; padding-right: 6%; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">Sta<span>brix</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html#problem">Problem</a></li>
+    <li><a href="index.html#solution">Solution</a></li>
+    <li><a href="index.html#benefits">Benefits</a></li>
+    <li><a href="product.html" class="active">Shop</a></li>
+    <li><a href="checkout.html" class="btn btn-primary" style="padding:0.5rem 1.25rem;font-size:0.83rem;">Checkout</a></li>
+  </ul>
+</nav>
+
+<div class="breadcrumb">
+  <a href="index.html">Home</a> › <span>Shop Insoles</span>
+</div>
+
+<div class="page-header">
+  <h1>Shop Stabrix Insoles</h1>
+  <p>Select the right support level for your needs. All insoles ship free.</p>
+</div>
+
+<section class="product-grid-section">
+  <div class="filter-row">
+    <span class="filter-label">Filter:</span>
+    <button class="filter-chip active">All</button>
+    <button class="filter-chip">Recovery</button>
+    <button class="filter-chip">Athletic</button>
+    <button class="filter-chip">Everyday</button>
+  </div>
+
+  <div class="products">
+
+    <!-- Product 1 -->
+    <a href="product-detail.html?id=cf1" style="text-decoration:none;">
+      <div class="product-card">
+        <div class="product-card-img">
+          <span class="badge badge-green">Best Seller</span>
+          <svg viewBox="0 0 360 200" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;position:relative;z-index:1;">
+            <ellipse cx="180" cy="192" rx="130" ry="10" fill="rgba(0,0,0,0.4)"/>
+            <path d="M60 155 C50 135 42 108 44 82 C46 56 56 38 74 26 C92 14 116 12 140 14 C164 16 198 22 222 32 C242 40 268 52 280 68 C292 84 290 106 282 126 C274 146 254 162 232 170 C210 178 72 170 60 155Z" fill="url(#g1)"/>
+            <clipPath id="c1"><path d="M60 155 C50 135 42 108 44 82 C46 56 56 38 74 26 C92 14 116 12 140 14 C164 16 198 22 222 32 C242 40 268 52 280 68 C292 84 290 106 282 126 C274 146 254 162 232 170 C210 178 72 170 60 155Z"/></clipPath>
+            <g clip-path="url(#c1)" opacity="0.2">
+              <line x1="20" y1="0" x2="180" y2="200" stroke="white" stroke-width="1"/><line x1="45" y1="0" x2="205" y2="200" stroke="white" stroke-width="1"/><line x1="70" y1="0" x2="230" y2="200" stroke="white" stroke-width="1"/><line x1="95" y1="0" x2="255" y2="200" stroke="white" stroke-width="1"/><line x1="120" y1="0" x2="280" y2="200" stroke="white" stroke-width="1"/><line x1="145" y1="0" x2="305" y2="200" stroke="white" stroke-width="1"/><line x1="300" y1="0" x2="140" y2="200" stroke="white" stroke-width="1"/><line x1="275" y1="0" x2="115" y2="200" stroke="white" stroke-width="1"/><line x1="250" y1="0" x2="90" y2="200" stroke="white" stroke-width="1"/><line x1="225" y1="0" x2="65" y2="200" stroke="white" stroke-width="1"/>
+            </g>
+            <path d="M78 132 C92 122 108 118 124 120 C136 122 144 128 152 136" stroke="rgba(45,125,210,0.8)" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+            <rect x="95" y="88" width="120" height="5" rx="2.5" fill="rgba(45,125,210,0.65)"/>
+            <ellipse cx="78" cy="138" rx="24" ry="16" fill="rgba(45,125,210,0.2)" stroke="rgba(45,125,210,0.55)" stroke-width="1.5"/>
+            <defs><linearGradient id="g1" x1="42" y1="12" x2="292" y2="170" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#243a56"/><stop offset="100%" stop-color="#0f1e30"/></linearGradient></defs>
+          </svg>
+        </div>
+        <div class="product-card-body">
+          <div class="product-name">CF-1 Everyday Support</div>
+          <div class="product-tagline">Mild stabilization for daily comfort</div>
+          <div class="product-specs">
+            <span class="spec-chip">Level 1 Support</span>
+            <span class="spec-chip">6 Sizes</span>
+            <span class="spec-chip">Everyday Use</span>
+          </div>
+          <div class="product-price-row">
+            <div>
+              <div class="product-price">$49</div>
+              <div class="product-price-sub">Free shipping</div>
+            </div>
+            <span class="btn btn-primary" style="padding:0.6rem 1.25rem;font-size:0.82rem;">Select</span>
+          </div>
+        </div>
+      </div>
+    </a>
+
+    <!-- Product 2 -->
+    <a href="product-detail.html?id=cf2" style="text-decoration:none;">
+      <div class="product-card">
+        <div class="product-card-img">
+          <span class="badge">Most Popular</span>
+          <svg viewBox="0 0 360 200" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;position:relative;z-index:1;">
+            <ellipse cx="180" cy="192" rx="130" ry="10" fill="rgba(0,0,0,0.4)"/>
+            <path d="M60 155 C50 135 42 108 44 82 C46 56 56 38 74 26 C92 14 116 12 140 14 C164 16 198 22 222 32 C242 40 268 52 280 68 C292 84 290 106 282 126 C274 146 254 162 232 170 C210 178 72 170 60 155Z" fill="url(#g2)"/>
+            <clipPath id="c2"><path d="M60 155 C50 135 42 108 44 82 C46 56 56 38 74 26 C92 14 116 12 140 14 C164 16 198 22 222 32 C242 40 268 52 280 68 C292 84 290 106 282 126 C274 146 254 162 232 170 C210 178 72 170 60 155Z"/></clipPath>
+            <g clip-path="url(#c2)" opacity="0.2">
+              <line x1="20" y1="0" x2="180" y2="200" stroke="white" stroke-width="1"/><line x1="45" y1="0" x2="205" y2="200" stroke="white" stroke-width="1"/><line x1="70" y1="0" x2="230" y2="200" stroke="white" stroke-width="1"/><line x1="95" y1="0" x2="255" y2="200" stroke="white" stroke-width="1"/><line x1="120" y1="0" x2="280" y2="200" stroke="white" stroke-width="1"/><line x1="145" y1="0" x2="305" y2="200" stroke="white" stroke-width="1"/><line x1="300" y1="0" x2="140" y2="200" stroke="white" stroke-width="1"/><line x1="275" y1="0" x2="115" y2="200" stroke="white" stroke-width="1"/><line x1="250" y1="0" x2="90" y2="200" stroke="white" stroke-width="1"/><line x1="225" y1="0" x2="65" y2="200" stroke="white" stroke-width="1"/>
+            </g>
+            <path d="M78 132 C92 122 108 118 124 120 C136 122 144 128 152 136" stroke="rgba(45,125,210,0.8)" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+            <rect x="95" y="88" width="120" height="5" rx="2.5" fill="rgba(45,125,210,0.65)"/>
+            <ellipse cx="78" cy="138" rx="24" ry="16" fill="rgba(45,125,210,0.2)" stroke="rgba(45,125,210,0.55)" stroke-width="1.5"/>
+            <rect x="95" y="96" width="120" height="5" rx="2.5" fill="rgba(100,180,255,0.35)"/>
+            <defs><linearGradient id="g2" x1="42" y1="12" x2="292" y2="170" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#1d3552"/><stop offset="100%" stop-color="#0f1e30"/></linearGradient></defs>
+          </svg>
+        </div>
+        <div class="product-card-body">
+          <div class="product-name">CF-2 Pro Recovery</div>
+          <div class="product-tagline">Medium support for injury recovery</div>
+          <div class="product-specs">
+            <span class="spec-chip">Level 2 Support</span>
+            <span class="spec-chip">6 Sizes</span>
+            <span class="spec-chip">Recovery</span>
+          </div>
+          <div class="product-price-row">
+            <div>
+              <div class="product-price">$69</div>
+              <div class="product-price-sub">Free shipping</div>
+            </div>
+            <span class="btn btn-primary" style="padding:0.6rem 1.25rem;font-size:0.82rem;">Select</span>
+          </div>
+        </div>
+      </div>
+    </a>
+
+    <!-- Product 3 -->
+    <a href="product-detail.html?id=cf3" style="text-decoration:none;">
+      <div class="product-card">
+        <div class="product-card-img">
+          <span class="badge badge-orange">Max Support</span>
+          <svg viewBox="0 0 360 200" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;position:relative;z-index:1;">
+            <ellipse cx="180" cy="192" rx="130" ry="10" fill="rgba(0,0,0,0.4)"/>
+            <path d="M60 155 C50 135 42 108 44 82 C46 56 56 38 74 26 C92 14 116 12 140 14 C164 16 198 22 222 32 C242 40 268 52 280 68 C292 84 290 106 282 126 C274 146 254 162 232 170 C210 178 72 170 60 155Z" fill="url(#g3)"/>
+            <clipPath id="c3"><path d="M60 155 C50 135 42 108 44 82 C46 56 56 38 74 26 C92 14 116 12 140 14 C164 16 198 22 222 32 C242 40 268 52 280 68 C292 84 290 106 282 126 C274 146 254 162 232 170 C210 178 72 170 60 155Z"/></clipPath>
+            <g clip-path="url(#c3)" opacity="0.2">
+              <line x1="20" y1="0" x2="180" y2="200" stroke="white" stroke-width="1"/><line x1="45" y1="0" x2="205" y2="200" stroke="white" stroke-width="1"/><line x1="70" y1="0" x2="230" y2="200" stroke="white" stroke-width="1"/><line x1="95" y1="0" x2="255" y2="200" stroke="white" stroke-width="1"/><line x1="120" y1="0" x2="280" y2="200" stroke="white" stroke-width="1"/><line x1="145" y1="0" x2="305" y2="200" stroke="white" stroke-width="1"/><line x1="300" y1="0" x2="140" y2="200" stroke="white" stroke-width="1"/><line x1="275" y1="0" x2="115" y2="200" stroke="white" stroke-width="1"/><line x1="250" y1="0" x2="90" y2="200" stroke="white" stroke-width="1"/><line x1="225" y1="0" x2="65" y2="200" stroke="white" stroke-width="1"/>
+            </g>
+            <path d="M78 132 C92 122 108 118 124 120 C136 122 144 128 152 136" stroke="rgba(45,125,210,0.8)" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+            <rect x="95" y="80" width="120" height="5" rx="2.5" fill="rgba(45,125,210,0.65)"/>
+            <rect x="95" y="88" width="120" height="5" rx="2.5" fill="rgba(100,180,255,0.45)"/>
+            <rect x="95" y="96" width="120" height="5" rx="2.5" fill="rgba(45,125,210,0.3)"/>
+            <ellipse cx="78" cy="138" rx="24" ry="16" fill="rgba(45,125,210,0.25)" stroke="rgba(45,125,210,0.7)" stroke-width="2"/>
+            <defs><linearGradient id="g3" x1="42" y1="12" x2="292" y2="170" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#152944"/><stop offset="100%" stop-color="#0a1520"/></linearGradient></defs>
+          </svg>
+        </div>
+        <div class="product-card-body">
+          <div class="product-name">CF-3 Athletic Max</div>
+          <div class="product-tagline">Maximum stabilization for athletes</div>
+          <div class="product-specs">
+            <span class="spec-chip">Level 3 Support</span>
+            <span class="spec-chip">6 Sizes</span>
+            <span class="spec-chip">Athletic</span>
+          </div>
+          <div class="product-price-row">
+            <div>
+              <div class="product-price">$89</div>
+              <div class="product-price-sub">Free shipping</div>
+            </div>
+            <span class="btn btn-primary" style="padding:0.6rem 1.25rem;font-size:0.82rem;">Select</span>
+          </div>
+        </div>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<!-- COMPARE TABLE -->
+<section class="compare-section">
+  <h2>Compare Models</h2>
+  <table class="compare-table">
+    <thead>
+      <tr>
+        <th>Feature</th>
+        <th>CF-1 Everyday</th>
+        <th>CF-2 Pro Recovery</th>
+        <th>CF-3 Athletic Max</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Carbon Fiber Core</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td></tr>
+      <tr><td>Support Level</td><td>Mild (1)</td><td>Medium (2)</td><td>Maximum (3)</td></tr>
+      <tr><td>Arch Support</td><td>Standard</td><td>Enhanced</td><td>Maximum</td></tr>
+      <tr><td>Heel Cup Depth</td><td>Shallow</td><td>Medium</td><td>Deep</td></tr>
+      <tr><td>Injury Recovery Use</td><td class="cross">–</td><td class="check">✓</td><td class="check">✓</td></tr>
+      <tr><td>Athletic Performance</td><td class="cross">–</td><td class="cross">–</td><td class="check">✓</td></tr>
+      <tr><td>Fits Dress Shoes</td><td class="check">✓</td><td class="check">✓</td><td class="cross">–</td></tr>
+      <tr><td>Available Sizes</td><td>US 5–13</td><td>US 5–13</td><td>US 5–13</td></tr>
+      <tr><td>Price</td><td><strong>$49</strong></td><td><strong>$69</strong></td><td><strong>$89</strong></td></tr>
+    </tbody>
+  </table>
+</section>
+
+<footer>
+  <div class="footer-logo">Sta<span>brix</span></div>
+  <p>© 2025 Stabrix. All rights reserved.</p>
+  <ul class="footer-links">
+    <li><a href="#">Privacy</a></li>
+    <li><a href="#">Terms</a></li>
+    <li><a href="#">Contact</a></li>
+    <li><a href="#">Returns</a></li>
+  </ul>
+</footer>
+
+<script>
+  document.querySelectorAll('.filter-chip').forEach(chip => {
+    chip.addEventListener('click', () => {
+      document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+      chip.classList.add('active');
+    });
+  });
+</script>
+</body>
+</html>

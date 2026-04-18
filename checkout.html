@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Checkout — Stabrix</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --white:#ffffff;--off-white:#f4f7fb;--light-blue:#e8f2fc;
+      --blue-100:#cce3f7;--blue-500:#2d7dd2;--blue-600:#1f6bbf;
+      --blue-700:#155a9e;--blue-900:#0b2e52;
+      --gray-50:#f9fafb;--gray-100:#f0f4f8;--gray-200:#dde3ea;
+      --gray-400:#94a3b5;--gray-600:#4f6176;--gray-800:#1e2f40;
+      --font-display:'DM Serif Display',serif;--font-body:'DM Sans',sans-serif;
+      --radius:12px;
+      --shadow-sm:0 1px 3px rgba(15,30,50,0.08);
+      --shadow-md:0 4px 16px rgba(15,30,50,0.10);
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-body); color: var(--gray-800); background: var(--off-white); line-height: 1.6; }
+
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 0 5%; height: 72px; background: rgba(255,255,255,0.97); border-bottom: 1px solid rgba(200,218,240,0.5); box-shadow: var(--shadow-sm); }
+    .nav-logo { font-family: var(--font-display); font-size: 1.5rem; color: var(--blue-700); letter-spacing: -0.02em; text-decoration: none; }
+    .nav-logo span { color: var(--blue-500); }
+    .nav-secure { display: flex; align-items: center; gap: 0.4rem; font-size: 0.78rem; color: var(--gray-400); }
+    .nav-secure svg { color: #16a34a; }
+
+    .btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.75rem; border-radius: 9999px; font-family: var(--font-body); font-weight: 600; font-size: 0.9rem; cursor: pointer; border: none; transition: all 0.22s; text-decoration: none; }
+    .btn-primary { background: var(--blue-600); color: var(--white) !important; box-shadow: 0 4px 14px rgba(31,107,191,0.35); }
+    .btn-primary:hover { background: var(--blue-700); transform: translateY(-1px); }
+
+    /* STEPS */
+    .steps-bar { padding: 90px 7% 0; display: flex; gap: 0; align-items: center; justify-content: center; }
+    .step { display: flex; align-items: center; gap: 0.6rem; font-size: 0.82rem; font-weight: 500; color: var(--gray-400); }
+    .step.active { color: var(--blue-600); font-weight: 600; }
+    .step.done { color: #16a34a; }
+    .step-num { width: 28px; height: 28px; border-radius: 50%; border: 2px solid currentColor; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700; flex-shrink: 0; }
+    .step.active .step-num { background: var(--blue-600); border-color: var(--blue-600); color: var(--white); }
+    .step.done .step-num { background: #16a34a; border-color: #16a34a; color: var(--white); }
+    .step-line { width: 60px; height: 1px; background: var(--gray-200); margin: 0 0.5rem; }
+
+    /* LAYOUT */
+    .checkout-layout { display: grid; grid-template-columns: 1fr 380px; gap: 2rem; padding: 2rem 7% 5rem; align-items: start; }
+
+    /* FORM */
+    .checkout-form { background: var(--white); border-radius: 20px; padding: 2.5rem; border: 1px solid var(--gray-200); }
+    .form-section-title { font-family: var(--font-display); font-size: 1.2rem; color: var(--blue-900); margin-bottom: 1.5rem; padding-bottom: 0.75rem; border-bottom: 1px solid var(--gray-100); }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+    .form-row.full { grid-template-columns: 1fr; }
+    .form-row.three { grid-template-columns: 1fr 1fr 1fr; }
+    .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+    label { font-size: 0.78rem; font-weight: 600; color: var(--gray-600); text-transform: uppercase; letter-spacing: 0.05em; }
+    input, select { width: 100%; padding: 0.75rem 1rem; border: 1.5px solid var(--gray-200); border-radius: 10px; font-family: var(--font-body); font-size: 0.9rem; color: var(--gray-800); background: var(--white); transition: border-color 0.2s, box-shadow 0.2s; outline: none; }
+    input:focus, select:focus { border-color: var(--blue-500); box-shadow: 0 0 0 3px rgba(45,125,210,0.12); }
+    input::placeholder { color: var(--gray-400); }
+
+    .section-divider { border: none; border-top: 1px solid var(--gray-100); margin: 2rem 0; }
+
+    .card-row { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+    .card-input-wrap { position: relative; }
+    .card-input-wrap input { padding-right: 3.5rem; }
+    .card-icons { position: absolute; right: 0.75rem; top: 50%; transform: translateY(-50%); display: flex; gap: 0.3rem; }
+    .card-icon { width: 28px; height: 18px; border-radius: 3px; background: var(--gray-200); display: flex; align-items: center; justify-content: center; font-size: 0.45rem; font-weight: 700; color: var(--gray-600); }
+
+    .ssl-note { display: flex; align-items: center; gap: 0.5rem; font-size: 0.75rem; color: var(--gray-400); margin-top: 0.75rem; }
+    .ssl-note svg { color: #16a34a; flex-shrink: 0; }
+
+    .place-order-btn { width: 100%; padding: 1.1rem; font-size: 1.05rem; justify-content: center; border-radius: 12px; margin-top: 1.5rem; }
+
+    /* ORDER SUMMARY */
+    .order-summary { background: var(--white); border-radius: 20px; padding: 2rem; border: 1px solid var(--gray-200); position: sticky; top: 90px; }
+    .summary-title { font-family: var(--font-display); font-size: 1.1rem; color: var(--blue-900); margin-bottom: 1.5rem; padding-bottom: 0.75rem; border-bottom: 1px solid var(--gray-100); }
+
+    .cart-item { display: flex; gap: 1rem; margin-bottom: 1.25rem; align-items: flex-start; }
+    .cart-item-img { width: 72px; height: 56px; background: linear-gradient(160deg, var(--blue-900), #0d2340); border-radius: 10px; flex-shrink: 0; position: relative; overflow: hidden; }
+    .cart-item-img::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(45deg, transparent, transparent 6px, rgba(255,255,255,0.03) 6px, rgba(255,255,255,0.03) 7px); }
+    .cart-item-info { flex: 1; }
+    .cart-item-name { font-size: 0.9rem; font-weight: 600; color: var(--blue-900); }
+    .cart-item-meta { font-size: 0.75rem; color: var(--gray-400); margin-top: 0.15rem; }
+    .cart-item-qty { display: flex; align-items: center; gap: 0.5rem; margin-top: 0.5rem; }
+    .qty-btn { width: 24px; height: 24px; border: 1.5px solid var(--gray-200); border-radius: 50%; background: var(--white); font-size: 0.8rem; cursor: pointer; display: flex; align-items: center; justify-content: center; color: var(--gray-600); transition: all 0.2s; }
+    .qty-btn:hover { border-color: var(--blue-500); color: var(--blue-600); }
+    .qty-val { font-size: 0.85rem; font-weight: 600; color: var(--gray-800); min-width: 20px; text-align: center; }
+    .cart-item-price { font-size: 0.95rem; font-weight: 600; color: var(--blue-700); }
+
+    .summary-lines { border-top: 1px solid var(--gray-100); padding-top: 1.25rem; margin-top: 0.5rem; display: flex; flex-direction: column; gap: 0.75rem; }
+    .summary-line { display: flex; justify-content: space-between; font-size: 0.85rem; color: var(--gray-600); }
+    .summary-line.total { font-size: 1rem; font-weight: 700; color: var(--blue-900); padding-top: 0.75rem; border-top: 1px solid var(--gray-200); margin-top: 0.25rem; }
+    .free-tag { color: #16a34a; font-weight: 600; }
+
+    .promo-row { display: flex; gap: 0.5rem; margin-top: 1.25rem; }
+    .promo-input { flex: 1; padding: 0.6rem 0.9rem; border: 1.5px solid var(--gray-200); border-radius: 9999px; font-size: 0.82rem; outline: none; font-family: var(--font-body); }
+    .promo-input:focus { border-color: var(--blue-500); }
+    .promo-btn { padding: 0.6rem 1.1rem; border-radius: 9999px; background: var(--gray-100); border: none; font-size: 0.8rem; font-weight: 600; color: var(--gray-600); cursor: pointer; transition: all 0.2s; }
+    .promo-btn:hover { background: var(--light-blue); color: var(--blue-700); }
+
+    footer { background: var(--blue-900); color: rgba(255,255,255,0.5); padding: 2.5rem 7%; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+    .footer-logo { font-family: var(--font-display); font-size: 1.3rem; color: var(--white); }
+    .footer-logo span { color: var(--blue-500); }
+    footer p { font-size: 0.8rem; }
+    .footer-links { display: flex; gap: 1.5rem; list-style: none; }
+    .footer-links a { color: rgba(255,255,255,0.45); font-size: 0.8rem; text-decoration: none; }
+    .footer-links a:hover { color: rgba(255,255,255,0.8); }
+
+    @media (max-width: 900px) { .checkout-layout { grid-template-columns: 1fr; } .order-summary { position: static; } }
+    @media (max-width: 600px) { .checkout-layout, .steps-bar { padding-left: 6%; padding-right: 6%; } .form-row { grid-template-columns: 1fr; } .form-row.three { grid-template-columns: 1fr 1fr; } .card-row { grid-template-columns: 1fr 1fr; } nav { padding: 0 6%; } }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">Sta<span>brix</span></a>
+  <div class="nav-secure">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+    Secure Checkout
+  </div>
+</nav>
+
+<!-- STEPS -->
+<div class="steps-bar">
+  <div class="step active">
+    <span class="step-num">1</span> Cart
+  </div>
+  <div class="step-line"></div>
+  <div class="step active">
+    <span class="step-num">2</span> Information
+  </div>
+  <div class="step-line"></div>
+  <div class="step">
+    <span class="step-num">3</span> Payment
+  </div>
+  <div class="step-line"></div>
+  <div class="step">
+    <span class="step-num">4</span> Confirmation
+  </div>
+</div>
+
+<div class="checkout-layout">
+
+  <!-- FORM -->
+  <div class="checkout-form">
+    <!-- Shipping -->
+    <h2 class="form-section-title">Shipping Information</h2>
+    <div class="form-row">
+      <div class="form-group">
+        <label>First Name</label>
+        <input type="text" placeholder="Jane" />
+      </div>
+      <div class="form-group">
+        <label>Last Name</label>
+        <input type="text" placeholder="Smith" />
+      </div>
+    </div>
+    <div class="form-row full">
+      <div class="form-group">
+        <label>Email Address</label>
+        <input type="email" placeholder="jane@example.com" />
+      </div>
+    </div>
+    <div class="form-row full">
+      <div class="form-group">
+        <label>Street Address</label>
+        <input type="text" placeholder="123 Main Street" />
+      </div>
+    </div>
+    <div class="form-row full">
+      <div class="form-group">
+        <label>Apt / Suite (optional)</label>
+        <input type="text" placeholder="Apt 4B" />
+      </div>
+    </div>
+    <div class="form-row three">
+      <div class="form-group">
+        <label>City</label>
+        <input type="text" placeholder="New York" />
+      </div>
+      <div class="form-group">
+        <label>State</label>
+        <select>
+          <option value="">Select…</option>
+          <option>AL</option><option>AK</option><option>AZ</option><option>AR</option>
+          <option>CA</option><option>CO</option><option>CT</option><option>DE</option>
+          <option>FL</option><option>GA</option><option>HI</option><option>ID</option>
+          <option>IL</option><option>IN</option><option>IA</option><option>KS</option>
+          <option>KY</option><option>LA</option><option>ME</option><option>MD</option>
+          <option>MA</option><option>MI</option><option>MN</option><option>MS</option>
+          <option>MO</option><option>MT</option><option>NE</option><option>NV</option>
+          <option>NH</option><option>NJ</option><option>NM</option><option selected>NY</option>
+          <option>NC</option><option>ND</option><option>OH</option><option>OK</option>
+          <option>OR</option><option>PA</option><option>RI</option><option>SC</option>
+          <option>SD</option><option>TN</option><option>TX</option><option>UT</option>
+          <option>VT</option><option>VA</option><option>WA</option><option>WV</option>
+          <option>WI</option><option>WY</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>ZIP Code</label>
+        <input type="text" placeholder="10001" maxlength="10" />
+      </div>
+    </div>
+
+    <hr class="section-divider" />
+
+    <!-- Payment -->
+    <h2 class="form-section-title">Payment Details</h2>
+    <div class="form-row full">
+      <div class="form-group">
+        <label>Name on Card</label>
+        <input type="text" placeholder="Jane Smith" />
+      </div>
+    </div>
+    <div class="form-row full">
+      <div class="form-group">
+        <label>Card Number</label>
+        <div class="card-input-wrap">
+          <input type="text" placeholder="1234 5678 9012 3456" maxlength="19" id="cardNum" />
+          <div class="card-icons">
+            <div class="card-icon" style="background:#1a1f5e;color:white;font-size:0.5rem;">VISA</div>
+            <div class="card-icon" style="background:#eb001b;">
+              <div style="width:10px;height:10px;border-radius:50%;background:#f79e1b;margin-left:-4px;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-row">
+      <div class="form-group">
+        <label>Expiry Date</label>
+        <input type="text" placeholder="MM / YY" maxlength="7" />
+      </div>
+      <div class="form-group">
+        <label>CVV</label>
+        <input type="text" placeholder="123" maxlength="4" />
+      </div>
+    </div>
+
+    <div class="ssl-note">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+      Your payment information is encrypted with 256-bit SSL security.
+    </div>
+
+    <a href="confirmation.html" class="btn btn-primary btn-large place-order-btn">
+      Place Order — $69.00
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+  </div>
+
+  <!-- ORDER SUMMARY -->
+  <div class="order-summary">
+    <div class="summary-title">Order Summary</div>
+
+    <div class="cart-item">
+      <div class="cart-item-img"></div>
+      <div class="cart-item-info">
+        <div class="cart-item-name">CF-2 Pro Recovery</div>
+        <div class="cart-item-meta">Size: US 7–8 · Level 2 Support</div>
+        <div class="cart-item-qty">
+          <button class="qty-btn" onclick="changeQty(-1)">−</button>
+          <span class="qty-val" id="qty">1</span>
+          <button class="qty-btn" onclick="changeQty(1)">+</button>
+        </div>
+      </div>
+      <div class="cart-item-price" id="item-price">$69</div>
+    </div>
+
+    <div class="promo-row">
+      <input class="promo-input" placeholder="Promo code" type="text" />
+      <button class="promo-btn">Apply</button>
+    </div>
+
+    <div class="summary-lines">
+      <div class="summary-line"><span>Subtotal</span><span id="subtotal">$69.00</span></div>
+      <div class="summary-line"><span>Shipping</span><span class="free-tag">Free</span></div>
+      <div class="summary-line"><span>Tax (est.)</span><span id="tax">$5.52</span></div>
+      <div class="summary-line total"><span>Total</span><span id="total">$74.52</span></div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-logo">Sta<span>brix</span></div>
+  <p>© 2025 Stabrix. All rights reserved.</p>
+  <ul class="footer-links">
+    <li><a href="#">Privacy</a></li><li><a href="#">Terms</a></li>
+    <li><a href="#">Contact</a></li><li><a href="#">Returns</a></li>
+  </ul>
+</footer>
+
+<script>
+  let qty = 1;
+  const price = 69;
+  function changeQty(delta) {
+    qty = Math.max(1, qty + delta);
+    document.getElementById('qty').textContent = qty;
+    const sub = price * qty;
+    const tax = (sub * 0.08).toFixed(2);
+    document.getElementById('subtotal').textContent = `$${sub}.00`;
+    document.getElementById('tax').textContent = `$${tax}`;
+    document.getElementById('total').textContent = `$${(sub + parseFloat(tax)).toFixed(2)}`;
+    document.querySelector('.place-order-btn').innerHTML = `Place Order — $${(sub + parseFloat(tax)).toFixed(2)} <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+  }
+  // Format card number
+  document.getElementById('cardNum').addEventListener('input', function(e) {
+    let v = e.target.value.replace(/\D/g, '').substring(0, 16);
+    e.target.value = v.replace(/(.{4})/g, '$1 ').trim();
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CF-2 Pro Recovery — Stabrix</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --white: #ffffff; --off-white: #f4f7fb; --light-blue: #e8f2fc;
+      --blue-100: #cce3f7; --blue-500: #2d7dd2; --blue-600: #1f6bbf;
+      --blue-700: #155a9e; --blue-900: #0b2e52;
+      --gray-50: #f9fafb; --gray-100: #f0f4f8; --gray-200: #dde3ea;
+      --gray-400: #94a3b5; --gray-600: #4f6176; --gray-800: #1e2f40;
+      --font-display: 'DM Serif Display', serif; --font-body: 'DM Sans', sans-serif;
+      --radius: 12px;
+      --shadow-sm: 0 1px 3px rgba(15,30,50,0.08);
+      --shadow-md: 0 4px 16px rgba(15,30,50,0.10);
+      --shadow-lg: 0 12px 40px rgba(15,30,50,0.13);
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-body); color: var(--gray-800); background: var(--white); line-height: 1.6; overflow-x: hidden; }
+
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 0 5%; height: 72px; background: rgba(255,255,255,0.95); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(200,218,240,0.5); box-shadow: 0 1px 3px rgba(15,30,50,0.06); }
+    .nav-logo { font-family: var(--font-display); font-size: 1.5rem; color: var(--blue-700); letter-spacing: -0.02em; text-decoration: none; }
+    .nav-logo span { color: var(--blue-500); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
+    .nav-links a { text-decoration: none; font-size: 0.875rem; font-weight: 500; color: var(--gray-600); transition: color 0.2s; }
+    .nav-links a:hover { color: var(--blue-600); }
+    .nav-links a.btn-primary { color: var(--white) !important; }
+    .btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.75rem; border-radius: 9999px; font-family: var(--font-body); font-weight: 600; font-size: 0.9rem; cursor: pointer; border: none; transition: all 0.22s; text-decoration: none; }
+    .btn-primary { background: var(--blue-600); color: var(--white) !important; box-shadow: 0 4px 14px rgba(31,107,191,0.35); }
+    .btn-primary:hover { background: var(--blue-700); transform: translateY(-1px); }
+    .btn-outline { background: transparent; border: 2px solid var(--blue-500); color: var(--blue-600); }
+    .btn-large { padding: 1rem 2.25rem; font-size: 1rem; }
+
+    .breadcrumb { padding: 100px 7% 0; display: flex; gap: 0.5rem; align-items: center; font-size: 0.8rem; color: var(--gray-400); }
+    .breadcrumb a { color: var(--gray-400); text-decoration: none; }
+    .breadcrumb a:hover { color: var(--blue-600); }
+    .breadcrumb span { color: var(--blue-600); font-weight: 500; }
+
+    /* PRODUCT DETAIL */
+    .detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; padding: 2.5rem 7% 5rem; align-items: start; }
+    .detail-img { background: linear-gradient(160deg, var(--blue-900), #0d2340); border-radius: 24px; padding: 3rem 2.5rem; position: sticky; top: 90px; overflow: hidden; }
+    .detail-img::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255,255,255,0.018) 10px, rgba(255,255,255,0.018) 11px); }
+
+    .detail-tag { display: inline-flex; align-items: center; gap: 0.4rem; background: var(--blue-600); color: var(--white); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 0.3rem 0.8rem; border-radius: 9999px; margin-bottom: 1.25rem; }
+    .detail-name { font-family: var(--font-display); font-size: clamp(1.8rem, 3vw, 2.4rem); color: var(--blue-900); letter-spacing: -0.02em; margin-bottom: 0.5rem; }
+    .detail-sub { font-size: 1rem; color: var(--gray-600); font-weight: 300; margin-bottom: 1.75rem; }
+    .detail-price { font-family: var(--font-display); font-size: 2.2rem; color: var(--blue-700); margin-bottom: 0.3rem; }
+    .detail-price-note { font-size: 0.82rem; color: var(--gray-400); margin-bottom: 2rem; }
+
+    .option-label { font-size: 0.8rem; font-weight: 700; color: var(--gray-800); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.75rem; }
+    .size-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 0.5rem; margin-bottom: 1.75rem; }
+    .size-btn { padding: 0.55rem 0.25rem; border: 1.5px solid var(--gray-200); border-radius: 8px; background: var(--white); font-size: 0.82rem; font-weight: 500; color: var(--gray-600); cursor: pointer; text-align: center; transition: all 0.2s; }
+    .size-btn:hover { border-color: var(--blue-500); color: var(--blue-600); }
+    .size-btn.active { border-color: var(--blue-600); background: var(--light-blue); color: var(--blue-700); font-weight: 600; }
+
+    .thickness-grid { display: flex; gap: 0.75rem; margin-bottom: 2rem; }
+    .thickness-btn { flex: 1; padding: 0.9rem 0.5rem; border: 1.5px solid var(--gray-200); border-radius: 10px; background: var(--white); font-size: 0.82rem; font-weight: 500; color: var(--gray-600); cursor: pointer; text-align: center; transition: all 0.2s; }
+    .thickness-btn:hover { border-color: var(--blue-500); }
+    .thickness-btn.active { border-color: var(--blue-600); background: var(--light-blue); color: var(--blue-700); }
+    .thickness-btn strong { display: block; font-size: 0.9rem; margin-bottom: 0.15rem; }
+    .thickness-btn span { font-size: 0.72rem; color: var(--gray-400); }
+    .thickness-btn.active span { color: var(--blue-600); }
+
+    .add-to-cart { width: 100%; margin-bottom: 1rem; justify-content: center; font-size: 1.05rem; padding: 1.1rem; }
+    .buy-now { width: 100%; justify-content: center; font-size: 1.05rem; padding: 1.1rem; background: var(--blue-900); }
+    .buy-now:hover { background: #062040; }
+
+    .trust-row { display: flex; gap: 1.5rem; margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--gray-200); flex-wrap: wrap; }
+    .trust-item { display: flex; align-items: center; gap: 0.5rem; font-size: 0.78rem; color: var(--gray-600); }
+    .trust-item svg { color: var(--blue-500); flex-shrink: 0; }
+
+    /* TABS */
+    .detail-tabs { margin-top: 2rem; border-top: 1px solid var(--gray-200); padding-top: 2rem; }
+    .tab-nav { display: flex; gap: 0; border-bottom: 1px solid var(--gray-200); margin-bottom: 1.75rem; }
+    .tab-btn { padding: 0.75rem 1.25rem; font-size: 0.85rem; font-weight: 500; color: var(--gray-600); background: none; border: none; border-bottom: 2px solid transparent; cursor: pointer; transition: all 0.2s; margin-bottom: -1px; }
+    .tab-btn.active { color: var(--blue-600); border-bottom-color: var(--blue-600); font-weight: 600; }
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+    .spec-table { width: 100%; border-collapse: collapse; }
+    .spec-table tr { border-bottom: 1px solid var(--gray-100); }
+    .spec-table tr:last-child { border-bottom: none; }
+    .spec-table td { padding: 0.75rem 0; font-size: 0.87rem; }
+    .spec-table td:first-child { color: var(--gray-400); font-weight: 500; width: 45%; }
+    .spec-table td:last-child { color: var(--gray-800); font-weight: 400; }
+
+    .review-item { padding: 1.25rem 0; border-bottom: 1px solid var(--gray-100); }
+    .review-item:last-child { border-bottom: none; }
+    .stars { color: #f5a623; font-size: 0.85rem; margin-bottom: 0.4rem; }
+    .review-text { font-size: 0.88rem; color: var(--gray-600); line-height: 1.6; font-weight: 300; margin-bottom: 0.5rem; font-style: italic; }
+    .review-author { font-size: 0.75rem; font-weight: 600; color: var(--gray-400); text-transform: uppercase; letter-spacing: 0.05em; }
+
+    /* RELATED */
+    .related { padding: 4rem 7%; background: var(--off-white); border-top: 1px solid var(--gray-200); }
+    .related h2 { font-family: var(--font-display); font-size: 1.6rem; color: var(--blue-900); margin-bottom: 2rem; letter-spacing: -0.02em; }
+    .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    .related-card { background: var(--white); border: 1px solid var(--gray-200); border-radius: 16px; overflow: hidden; transition: all 0.25s; text-decoration: none; display: block; }
+    .related-card:hover { box-shadow: var(--shadow-md); transform: translateY(-3px); }
+    .related-card-img { background: linear-gradient(160deg, var(--blue-900), #0d2340); padding: 1.75rem; }
+    .related-card-body { padding: 1.1rem 1.25rem; }
+    .related-name { font-family: var(--font-display); font-size: 1rem; color: var(--blue-900); margin-bottom: 0.25rem; }
+    .related-price { font-size: 0.9rem; color: var(--blue-600); font-weight: 600; }
+
+    footer { background: var(--blue-900); color: rgba(255,255,255,0.5); padding: 3rem 7%; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+    .footer-logo { font-family: var(--font-display); font-size: 1.3rem; color: var(--white); }
+    .footer-logo span { color: var(--blue-500); }
+    footer p { font-size: 0.8rem; }
+    .footer-links { display: flex; gap: 1.5rem; list-style: none; }
+    .footer-links a { color: rgba(255,255,255,0.45); font-size: 0.8rem; text-decoration: none; }
+    .footer-links a:hover { color: rgba(255,255,255,0.8); }
+
+    @media (max-width: 900px) { .detail-grid { grid-template-columns: 1fr; gap: 2.5rem; } .detail-img { position: static; } .related-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 600px) { nav { padding: 0 6%; } .nav-links { display: none; } .detail-grid, .related { padding-left: 6%; padding-right: 6%; } .related-grid { grid-template-columns: 1fr; } .size-grid { grid-template-columns: repeat(4, 1fr); } }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">Sta<span>brix</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html#problem">Problem</a></li>
+    <li><a href="index.html#solution">Solution</a></li>
+    <li><a href="index.html#benefits">Benefits</a></li>
+    <li><a href="product.html">Shop</a></li>
+    <li><a href="checkout.html" class="btn btn-primary" style="padding:0.5rem 1.25rem;font-size:0.83rem;">Checkout</a></li>
+  </ul>
+</nav>
+
+<div class="breadcrumb">
+  <a href="index.html">Home</a> › <a href="product.html">Shop</a> › <span id="bc-name">CF-2 Pro Recovery</span>
+</div>
+
+<div class="detail-grid">
+  <!-- Image -->
+  <div class="detail-img">
+    <svg viewBox="0 0 440 280" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;position:relative;z-index:1;">
+      <ellipse cx="220" cy="268" rx="160" ry="13" fill="rgba(0,0,0,0.45)"/>
+      <path d="M75 215 C60 190 48 155 50 118 C52 81 65 56 88 40 C111 24 140 20 170 22 C198 24 240 32 268 44 C292 54 322 68 338 90 C354 112 352 142 342 168 C332 194 308 214 280 224 C252 234 90 232 75 215Z"
+        fill="url(#dpg)"/>
+      <clipPath id="dpc"><path d="M75 215 C60 190 48 155 50 118 C52 81 65 56 88 40 C111 24 140 20 170 22 C198 24 240 32 268 44 C292 54 322 68 338 90 C354 112 352 142 342 168 C332 194 308 214 280 224 C252 234 90 232 75 215Z"/></clipPath>
+      <g clip-path="url(#dpc)" opacity="0.2">
+        <line x1="20" y1="10" x2="230" y2="280" stroke="white" stroke-width="1.2"/><line x1="50" y1="10" x2="260" y2="280" stroke="white" stroke-width="1.2"/><line x1="80" y1="10" x2="290" y2="280" stroke="white" stroke-width="1.2"/><line x1="110" y1="10" x2="320" y2="280" stroke="white" stroke-width="1.2"/><line x1="140" y1="10" x2="350" y2="280" stroke="white" stroke-width="1.2"/><line x1="170" y1="10" x2="380" y2="280" stroke="white" stroke-width="1.2"/><line x1="380" y1="10" x2="170" y2="280" stroke="white" stroke-width="1.2"/><line x1="350" y1="10" x2="140" y2="280" stroke="white" stroke-width="1.2"/><line x1="320" y1="10" x2="110" y2="280" stroke="white" stroke-width="1.2"/><line x1="290" y1="10" x2="80" y2="280" stroke="white" stroke-width="1.2"/><line x1="260" y1="10" x2="50" y2="280" stroke="white" stroke-width="1.2"/>
+      </g>
+      <path d="M98 182 C116 170 136 166 158 168 C174 170 186 178 196 188" stroke="rgba(45,125,210,0.85)" stroke-width="3" fill="none" stroke-linecap="round"/>
+      <rect x="118" y="128" width="150" height="6" rx="3" fill="rgba(45,125,210,0.7)"/>
+      <rect x="118" y="138" width="150" height="6" rx="3" fill="rgba(100,180,255,0.4)"/>
+      <ellipse cx="98" cy="190" rx="30" ry="20" fill="rgba(45,125,210,0.2)" stroke="rgba(45,125,210,0.6)" stroke-width="2"/>
+      <path d="M75 215 C60 190 48 155 50 118 C52 81 65 56 88 40" stroke="rgba(255,255,255,0.15)" stroke-width="2" fill="none"/>
+      <circle cx="98" cy="190" r="5" fill="rgba(45,125,210,0.9)"/>
+      <circle cx="220" cy="133" r="3.5" fill="rgba(100,180,255,0.7)"/>
+      <text x="62" y="224" font-family="DM Sans,sans-serif" font-size="8" fill="rgba(255,255,255,0.4)" font-weight="600" letter-spacing="1">HEEL CUP</text>
+      <text x="132" y="116" font-family="DM Sans,sans-serif" font-size="8" fill="rgba(255,255,255,0.4)" font-weight="600" letter-spacing="1">ARCH SUPPORT</text>
+      <defs><linearGradient id="dpg" x1="48" y1="20" x2="356" y2="228" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#1d3552"/><stop offset="55%" stop-color="#182c44"/><stop offset="100%" stop-color="#0f1e30"/></linearGradient></defs>
+    </svg>
+    <!-- Thumbnail selector -->
+    <div style="display:flex;gap:0.75rem;margin-top:1.25rem;position:relative;z-index:1;">
+      <div style="width:60px;height:48px;background:rgba(255,255,255,0.12);border-radius:8px;border:2px solid rgba(45,125,210,0.7);cursor:pointer;"></div>
+      <div style="width:60px;height:48px;background:rgba(255,255,255,0.06);border-radius:8px;border:1px solid rgba(255,255,255,0.12);cursor:pointer;"></div>
+      <div style="width:60px;height:48px;background:rgba(255,255,255,0.06);border-radius:8px;border:1px solid rgba(255,255,255,0.12);cursor:pointer;"></div>
+    </div>
+  </div>
+
+  <!-- Info -->
+  <div>
+    <span class="detail-tag" id="product-badge">Most Popular</span>
+    <h1 class="detail-name" id="product-name">CF-2 Pro Recovery</h1>
+    <p class="detail-sub" id="product-sub">Medium-support carbon fiber insole designed for injury recovery and rehabilitation</p>
+    <div class="stars">★★★★★ <span style="color:var(--gray-400);font-size:0.8rem;font-weight:400;">4.9 (128 reviews)</span></div>
+    <div style="height:1rem;"></div>
+    <div class="detail-price" id="product-price">$69</div>
+    <div class="detail-price-note">Free shipping · 30-day returns</div>
+
+    <!-- Size -->
+    <div class="option-label">Shoe Size (US)</div>
+    <div class="size-grid">
+      <button class="size-btn">5–6</button>
+      <button class="size-btn">6–7</button>
+      <button class="size-btn active">7–8</button>
+      <button class="size-btn">8–9</button>
+      <button class="size-btn">9–10</button>
+      <button class="size-btn">10–11</button>
+      <button class="size-btn">11–12</button>
+      <button class="size-btn">12–13</button>
+    </div>
+
+    <!-- Thickness -->
+    <div class="option-label">Support Level</div>
+    <div class="thickness-grid">
+      <button class="thickness-btn">
+        <strong>Level 1</strong>
+        <span>Everyday comfort</span>
+      </button>
+      <button class="thickness-btn active">
+        <strong>Level 2</strong>
+        <span>Recovery support</span>
+      </button>
+      <button class="thickness-btn">
+        <strong>Level 3</strong>
+        <span>Max stabilization</span>
+      </button>
+    </div>
+
+    <a href="checkout.html" class="btn btn-primary btn-large add-to-cart">
+      Add to Cart
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+    </a>
+    <a href="checkout.html" class="btn btn-primary btn-large buy-now" style="margin-top:0.75rem;">
+      Buy Now — $69
+    </a>
+
+    <div class="trust-row">
+      <div class="trust-item">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        Free shipping
+      </div>
+      <div class="trust-item">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-.08-8.36L23 10"/></svg>
+        30-day returns
+      </div>
+      <div class="trust-item">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        Medical-grade
+      </div>
+    </div>
+
+    <!-- Tabs -->
+    <div class="detail-tabs">
+      <div class="tab-nav">
+        <button class="tab-btn active" onclick="switchTab('description', this)">Description</button>
+        <button class="tab-btn" onclick="switchTab('specs', this)">Specifications</button>
+        <button class="tab-btn" onclick="switchTab('reviews', this)">Reviews (128)</button>
+      </div>
+
+      <div class="tab-panel active" id="tab-description">
+        <p style="font-size:0.92rem;color:var(--gray-600);line-height:1.8;font-weight:300;margin-bottom:1rem;">The Stabrix CF-2 Pro Recovery insole is engineered for individuals actively recovering from foot and ankle injuries, post-surgical rehabilitation, and those managing chronic conditions like plantar fasciitis or Achilles tendinopathy.</p>
+        <p style="font-size:0.92rem;color:var(--gray-600);line-height:1.8;font-weight:300;">Its medium-density carbon fiber core provides meaningful motion control without the rigidity of maximum-support models — giving your foot the structure it needs while maintaining a natural gait pattern throughout recovery.</p>
+      </div>
+
+      <div class="tab-panel" id="tab-specs">
+        <table class="spec-table">
+          <tr><td>Material</td><td>Carbon fiber composite with EVA top layer</td></tr>
+          <tr><td>Support Level</td><td>Medium (Level 2 of 3)</td></tr>
+          <tr><td>Available Sizes</td><td>US Men's/Women's 5–13</td></tr>
+          <tr><td>Thickness</td><td>4mm heel, 2mm toe</td></tr>
+          <tr><td>Weight</td><td>42g per insole (US 9)</td></tr>
+          <tr><td>Arch Type</td><td>Medium arch, enhanced heel cup</td></tr>
+          <tr><td>Recommended For</td><td>Injury recovery, plantar fasciitis, post-surgical rehab</td></tr>
+          <tr><td>Fits In</td><td>Athletic shoes, sneakers, most casual footwear</td></tr>
+          <tr><td>Lifespan</td><td>18–24 months with regular use</td></tr>
+        </table>
+      </div>
+
+      <div class="tab-panel" id="tab-reviews">
+        <div class="review-item">
+          <div class="stars">★★★★★</div>
+          <p class="review-text">"After my ankle surgery I was struggling to walk without pain. Stabrix insoles gave me the stability I needed to get back on my feet confidently within weeks of starting rehab."</p>
+          <div class="review-author">M. Reynolds — Verified Purchase</div>
+        </div>
+        <div class="review-item">
+          <div class="stars">★★★★★</div>
+          <p class="review-text">"I've been dealing with plantar fasciitis for two years. These are the first insoles that actually made a noticeable difference. Lighter than I expected, and they fit in all my shoes."</p>
+          <div class="review-author">K. Torres — Verified Purchase</div>
+        </div>
+        <div class="review-item">
+          <div class="stars">★★★★☆</div>
+          <p class="review-text">"Great product. Really helped with my arch pain. Took a few days to break in but now I wear them every day. Would definitely recommend to anyone dealing with foot problems."</p>
+          <div class="review-author">D. Park — Verified Purchase</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- RELATED -->
+<section class="related">
+  <h2>You Might Also Like</h2>
+  <div class="related-grid">
+    <a href="product-detail.html?id=cf1" class="related-card">
+      <div class="related-card-img">
+        <svg viewBox="0 0 280 140" fill="none" style="width:100%;"><path d="M40 110C32 94 26 74 28 56 36 20 70 12 110 14 140 16 180 26 200 46 218 64 216 96 200 112 184 128 52 124 40 110Z" fill="#1d3552" opacity="0.9"/><path d="M52 90C62 82 76 80 90 82" stroke="rgba(45,125,210,0.7)" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+      </div>
+      <div class="related-card-body">
+        <div class="related-name">CF-1 Everyday Support</div>
+        <div class="related-price">$49</div>
+      </div>
+    </a>
+    <a href="product-detail.html?id=cf3" class="related-card">
+      <div class="related-card-img">
+        <svg viewBox="0 0 280 140" fill="none" style="width:100%;"><path d="M40 110C32 94 26 74 28 56 36 20 70 12 110 14 140 16 180 26 200 46 218 64 216 96 200 112 184 128 52 124 40 110Z" fill="#152944" opacity="0.9"/><path d="M52 90C62 82 76 80 90 82" stroke="rgba(45,125,210,0.7)" stroke-width="2" fill="none" stroke-linecap="round"/><rect x="70" y="58" width="90" height="4" rx="2" fill="rgba(45,125,210,0.7)"/><rect x="70" y="64" width="90" height="4" rx="2" fill="rgba(100,180,255,0.4)"/><rect x="70" y="70" width="90" height="4" rx="2" fill="rgba(45,125,210,0.3)"/></svg>
+      </div>
+      <div class="related-card-body">
+        <div class="related-name">CF-3 Athletic Max</div>
+        <div class="related-price">$89</div>
+      </div>
+    </a>
+    <a href="product.html" class="related-card">
+      <div class="related-card-img" style="display:flex;align-items:center;justify-content:center;min-height:100px;">
+        <span style="font-family:'DM Serif Display',serif;font-size:1.1rem;color:rgba(255,255,255,0.6);position:relative;z-index:1;">View All Models</span>
+      </div>
+      <div class="related-card-body">
+        <div class="related-name">Browse All Insoles</div>
+        <div class="related-price" style="color:var(--gray-400);">3 models available</div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">Sta<span>brix</span></div>
+  <p>© 2025 Stabrix. All rights reserved.</p>
+  <ul class="footer-links">
+    <li><a href="#">Privacy</a></li><li><a href="#">Terms</a></li>
+    <li><a href="#">Contact</a></li><li><a href="#">Returns</a></li>
+  </ul>
+</footer>
+
+<script>
+  // Tab switching
+  function switchTab(id, btn) {
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('tab-' + id).classList.add('active');
+    btn.classList.add('active');
+  }
+  // Size selection
+  document.querySelectorAll('.size-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    });
+  });
+  // Thickness selection
+  document.querySelectorAll('.thickness-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.thickness-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    });
+  });
+  // Read query param to customize page
+  const params = new URLSearchParams(window.location.search);
+  const id = params.get('id') || 'cf2';
+  const products = {
+    cf1: { name: 'CF-1 Everyday Support', sub: 'Mild-support carbon fiber insole for everyday comfort', price: '$49', badge: 'Best Seller' },
+    cf2: { name: 'CF-2 Pro Recovery', sub: 'Medium-support carbon fiber insole designed for injury recovery', price: '$69', badge: 'Most Popular' },
+    cf3: { name: 'CF-3 Athletic Max', sub: 'Maximum-stabilization carbon fiber insole for athletes', price: '$89', badge: 'Max Support' },
+  };
+  const p = products[id] || products.cf2;
+  document.getElementById('product-name').textContent = p.name;
+  document.getElementById('product-sub').textContent = p.sub;
+  document.getElementById('product-price').textContent = p.price;
+  document.getElementById('product-badge').textContent = p.badge;
+  document.getElementById('bc-name').textContent = p.name;
+  document.querySelector('.buy-now').textContent = `Buy Now — ${p.price}`;
+</script>
+</body>
+</html>

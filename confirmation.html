@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Order Confirmed — Stabrix</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --white:#ffffff;--off-white:#f4f7fb;--light-blue:#e8f2fc;
+      --blue-100:#cce3f7;--blue-500:#2d7dd2;--blue-600:#1f6bbf;
+      --blue-700:#155a9e;--blue-900:#0b2e52;
+      --gray-100:#f0f4f8;--gray-200:#dde3ea;
+      --gray-400:#94a3b5;--gray-600:#4f6176;--gray-800:#1e2f40;
+      --green:#16a34a;--green-light:#f0fdf4;--green-border:#bbf7d0;
+      --font-display:'DM Serif Display',serif;--font-body:'DM Sans',sans-serif;
+      --radius:12px;
+      --shadow-sm:0 1px 3px rgba(15,30,50,0.08);
+      --shadow-md:0 4px 16px rgba(15,30,50,0.10);
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-body); color: var(--gray-800); background: var(--off-white); line-height: 1.6; }
+
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 0 5%; height: 72px; background: rgba(255,255,255,0.97); border-bottom: 1px solid rgba(200,218,240,0.5); box-shadow: var(--shadow-sm); }
+    .nav-logo { font-family: var(--font-display); font-size: 1.5rem; color: var(--blue-700); letter-spacing: -0.02em; text-decoration: none; }
+    .nav-logo span { color: var(--blue-500); }
+
+    .btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.75rem; border-radius: 9999px; font-family: var(--font-body); font-weight: 600; font-size: 0.9rem; cursor: pointer; border: none; transition: all 0.22s; text-decoration: none; }
+    .btn-primary { background: var(--blue-600); color: var(--white) !important; box-shadow: 0 4px 14px rgba(31,107,191,0.35); }
+    .btn-primary:hover { background: var(--blue-700); transform: translateY(-1px); }
+    .btn-outline { background: transparent; border: 2px solid var(--blue-500); color: var(--blue-600); }
+    .btn-outline:hover { background: var(--light-blue); }
+
+    /* STEPS */
+    .steps-bar { padding: 90px 7% 0; display: flex; gap: 0; align-items: center; justify-content: center; }
+    .step { display: flex; align-items: center; gap: 0.6rem; font-size: 0.82rem; font-weight: 500; color: var(--gray-400); }
+    .step.done { color: var(--green); font-weight: 600; }
+    .step-num { width: 28px; height: 28px; border-radius: 50%; border: 2px solid currentColor; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700; flex-shrink: 0; }
+    .step.done .step-num { background: var(--green); border-color: var(--green); color: var(--white); }
+    .step-line { width: 60px; height: 1px; background: var(--green-border); margin: 0 0.5rem; }
+
+    /* SUCCESS BANNER */
+    .success-banner { margin: 2rem 7% 0; background: var(--green-light); border: 1px solid var(--green-border); border-radius: 16px; padding: 1.5rem 2rem; display: flex; align-items: center; gap: 1rem; }
+    .success-icon { width: 48px; height: 48px; background: var(--green); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; animation: popIn 0.5s cubic-bezier(0.34,1.56,0.64,1); }
+    @keyframes popIn { from { transform: scale(0); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+    .success-banner h2 { font-family: var(--font-display); font-size: 1.3rem; color: #14532d; margin-bottom: 0.2rem; }
+    .success-banner p { font-size: 0.85rem; color: #166534; font-weight: 300; }
+
+    /* MAIN LAYOUT */
+    .confirm-layout { display: grid; grid-template-columns: 1fr 360px; gap: 2rem; padding: 2rem 7% 5rem; }
+
+    .confirm-card { background: var(--white); border-radius: 20px; padding: 2.5rem; border: 1px solid var(--gray-200); margin-bottom: 1.5rem; }
+    .confirm-card-title { font-family: var(--font-display); font-size: 1.15rem; color: var(--blue-900); margin-bottom: 1.5rem; padding-bottom: 0.75rem; border-bottom: 1px solid var(--gray-100); display: flex; align-items: center; gap: 0.6rem; }
+
+    .order-meta { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+    .meta-item label { font-size: 0.73rem; font-weight: 700; color: var(--gray-400); text-transform: uppercase; letter-spacing: 0.07em; display: block; margin-bottom: 0.25rem; }
+    .meta-item span { font-size: 0.9rem; color: var(--gray-800); font-weight: 500; }
+
+    /* Timeline */
+    .timeline { list-style: none; display: flex; flex-direction: column; gap: 0; }
+    .timeline-item { display: flex; gap: 1.25rem; position: relative; padding-bottom: 1.75rem; }
+    .timeline-item:last-child { padding-bottom: 0; }
+    .timeline-left { display: flex; flex-direction: column; align-items: center; }
+    .timeline-dot { width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 0.75rem; }
+    .timeline-dot.done { background: var(--green); color: var(--white); }
+    .timeline-dot.active { background: var(--blue-600); color: var(--white); }
+    .timeline-dot.pending { background: var(--gray-100); color: var(--gray-400); border: 2px solid var(--gray-200); }
+    .timeline-line { width: 2px; flex: 1; background: var(--gray-200); margin-top: 4px; }
+    .timeline-item:last-child .timeline-line { display: none; }
+    .timeline-content { padding-top: 0.3rem; }
+    .timeline-title { font-size: 0.9rem; font-weight: 600; color: var(--gray-800); }
+    .timeline-desc { font-size: 0.8rem; color: var(--gray-400); margin-top: 0.15rem; font-weight: 300; }
+    .timeline-date { font-size: 0.75rem; color: var(--blue-600); font-weight: 500; margin-top: 0.3rem; }
+
+    /* Items */
+    .order-item { display: flex; gap: 1rem; align-items: center; padding: 1rem 0; border-bottom: 1px solid var(--gray-100); }
+    .order-item:last-child { border-bottom: none; }
+    .order-item-img { width: 64px; height: 52px; background: linear-gradient(160deg, var(--blue-900), #0d2340); border-radius: 10px; flex-shrink: 0; position: relative; overflow: hidden; }
+    .order-item-img::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(45deg, transparent, transparent 6px, rgba(255,255,255,0.03) 6px, rgba(255,255,255,0.03) 7px); }
+    .order-item-name { font-size: 0.9rem; font-weight: 600; color: var(--blue-900); }
+    .order-item-meta { font-size: 0.75rem; color: var(--gray-400); }
+    .order-item-price { margin-left: auto; font-size: 0.95rem; font-weight: 600; color: var(--blue-700); }
+
+    /* SUMMARY SIDE */
+    .summary-side { }
+    .summary-card { background: var(--white); border-radius: 20px; padding: 2rem; border: 1px solid var(--gray-200); margin-bottom: 1.5rem; }
+    .summary-card-title { font-size: 0.85rem; font-weight: 700; color: var(--gray-600); text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 1.25rem; }
+    .summary-lines { display: flex; flex-direction: column; gap: 0.75rem; }
+    .summary-line { display: flex; justify-content: space-between; font-size: 0.85rem; color: var(--gray-600); }
+    .summary-line.total { font-size: 1rem; font-weight: 700; color: var(--blue-900); padding-top: 0.75rem; border-top: 1px solid var(--gray-200); }
+    .free-tag { color: var(--green); font-weight: 600; }
+
+    .address-block { font-size: 0.87rem; color: var(--gray-600); line-height: 1.7; font-weight: 300; }
+    .address-block strong { color: var(--gray-800); font-weight: 600; display: block; margin-bottom: 0.25rem; }
+
+    .cta-row { display: flex; flex-direction: column; gap: 0.75rem; }
+    .cta-row .btn { justify-content: center; }
+
+    footer { background: var(--blue-900); color: rgba(255,255,255,0.5); padding: 2.5rem 7%; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+    .footer-logo { font-family: var(--font-display); font-size: 1.3rem; color: var(--white); }
+    .footer-logo span { color: var(--blue-500); }
+    footer p { font-size: 0.8rem; }
+    .footer-links { display: flex; gap: 1.5rem; list-style: none; }
+    .footer-links a { color: rgba(255,255,255,0.45); font-size: 0.8rem; text-decoration: none; }
+    .footer-links a:hover { color: rgba(255,255,255,0.8); }
+
+    @media (max-width: 900px) { .confirm-layout { grid-template-columns: 1fr; } .order-meta { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 600px) { nav { padding: 0 6%; } .confirm-layout, .steps-bar, .success-banner { padding-left: 6%; padding-right: 6%; margin-left: 0; margin-right: 0; } .order-meta { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">Sta<span>brix</span></a>
+  <a href="product.html" class="btn btn-primary" style="padding:0.5rem 1.25rem;font-size:0.83rem;">Shop Again</a>
+</nav>
+
+<!-- STEPS -->
+<div class="steps-bar">
+  <div class="step done"><span class="step-num">✓</span> Cart</div>
+  <div class="step-line"></div>
+  <div class="step done"><span class="step-num">✓</span> Information</div>
+  <div class="step-line"></div>
+  <div class="step done"><span class="step-num">✓</span> Payment</div>
+  <div class="step-line"></div>
+  <div class="step done"><span class="step-num">✓</span> Confirmation</div>
+</div>
+
+<!-- SUCCESS BANNER -->
+<div class="success-banner">
+  <div class="success-icon">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+  </div>
+  <div>
+    <h2>Order Confirmed!</h2>
+    <p>Thank you for your purchase. A confirmation email has been sent to your inbox. Your order is now being processed.</p>
+  </div>
+</div>
+
+<div class="confirm-layout">
+  <div>
+
+    <!-- ORDER DETAILS -->
+    <div class="confirm-card">
+      <div class="confirm-card-title">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--blue-500)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        Order Details
+      </div>
+      <div class="order-meta">
+        <div class="meta-item"><label>Order Number</label><span>#STB-2025-8847</span></div>
+        <div class="meta-item"><label>Order Date</label><span id="order-date">—</span></div>
+        <div class="meta-item"><label>Payment Method</label><span>Visa •••• 3456</span></div>
+        <div class="meta-item"><label>Estimated Delivery</label><span id="est-delivery">—</span></div>
+      </div>
+    </div>
+
+    <!-- TRACKING TIMELINE -->
+    <div class="confirm-card">
+      <div class="confirm-card-title">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--blue-500)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        Order Status
+      </div>
+      <ul class="timeline">
+        <li class="timeline-item">
+          <div class="timeline-left">
+            <div class="timeline-dot done">✓</div>
+            <div class="timeline-line"></div>
+          </div>
+          <div class="timeline-content">
+            <div class="timeline-title">Order Placed</div>
+            <div class="timeline-desc">Your order has been received and confirmed.</div>
+            <div class="timeline-date" id="tl-placed">—</div>
+          </div>
+        </li>
+        <li class="timeline-item">
+          <div class="timeline-left">
+            <div class="timeline-dot active">⟳</div>
+            <div class="timeline-line"></div>
+          </div>
+          <div class="timeline-content">
+            <div class="timeline-title">Processing</div>
+            <div class="timeline-desc">Your insoles are being prepared for shipment.</div>
+            <div class="timeline-date">Estimated: 1–2 business days</div>
+          </div>
+        </li>
+        <li class="timeline-item">
+          <div class="timeline-left">
+            <div class="timeline-dot pending">3</div>
+            <div class="timeline-line"></div>
+          </div>
+          <div class="timeline-content">
+            <div class="timeline-title">Shipped</div>
+            <div class="timeline-desc">Your package is on its way. Tracking number will be emailed.</div>
+          </div>
+        </li>
+        <li class="timeline-item">
+          <div class="timeline-left">
+            <div class="timeline-dot pending">4</div>
+            <div class="timeline-line"></div>
+          </div>
+          <div class="timeline-content">
+            <div class="timeline-title">Delivered</div>
+            <div class="timeline-desc">Your Stabrix insoles arrive at your door.</div>
+            <div class="timeline-date" id="tl-deliver">—</div>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <!-- ITEMS -->
+    <div class="confirm-card">
+      <div class="confirm-card-title">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--blue-500)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+        Items Ordered
+      </div>
+      <div class="order-item">
+        <div class="order-item-img"></div>
+        <div>
+          <div class="order-item-name">CF-2 Pro Recovery Insole</div>
+          <div class="order-item-meta">Size: US 7–8 · Level 2 Support · Qty: 1</div>
+        </div>
+        <div class="order-item-price">$69.00</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- SIDE SUMMARY -->
+  <div class="summary-side">
+
+    <div class="summary-card">
+      <div class="summary-card-title">Payment Summary</div>
+      <div class="summary-lines">
+        <div class="summary-line"><span>Subtotal</span><span>$69.00</span></div>
+        <div class="summary-line"><span>Shipping</span><span class="free-tag">Free</span></div>
+        <div class="summary-line"><span>Tax</span><span>$5.52</span></div>
+        <div class="summary-line total"><span>Total Charged</span><span>$74.52</span></div>
+      </div>
+    </div>
+
+    <div class="summary-card">
+      <div class="summary-card-title">Shipping Address</div>
+      <div class="address-block">
+        <strong>Jane Smith</strong>
+        123 Main Street, Apt 4B<br />
+        New York, NY 10001<br />
+        United States
+      </div>
+    </div>
+
+    <div class="summary-card">
+      <div class="summary-card-title">What's Next?</div>
+      <div class="cta-row">
+        <a href="product.html" class="btn btn-primary">Shop More Insoles</a>
+        <a href="index.html" class="btn btn-outline">Back to Home</a>
+      </div>
+      <p style="font-size:0.75rem;color:var(--gray-400);margin-top:1rem;line-height:1.6;">Questions? Email us at <a href="mailto:support@stabrix.com" style="color:var(--blue-600);">support@stabrix.com</a> or visit our returns page for our 30-day policy.</p>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <div class="footer-logo">Sta<span>brix</span></div>
+  <p>© 2025 Stabrix. All rights reserved.</p>
+  <ul class="footer-links">
+    <li><a href="#">Privacy</a></li><li><a href="#">Terms</a></li>
+    <li><a href="#">Contact</a></li><li><a href="#">Returns</a></li>
+  </ul>
+</footer>
+
+<script>
+  const now = new Date();
+  const fmt = d => d.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+  const deliver = new Date(now); deliver.setDate(deliver.getDate() + 5);
+  document.getElementById('order-date').textContent = fmt(now);
+  document.getElementById('est-delivery').textContent = fmt(deliver);
+  document.getElementById('tl-placed').textContent = fmt(now) + ' · ' + now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+  document.getElementById('tl-deliver').textContent = 'Estimated: ' + fmt(deliver);
+</script>
+</body>
+</html>
