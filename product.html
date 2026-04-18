@@ -1,284 +1,223 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Shop Insoles — Stabrix</title>
-  <meta name="description" content="Browse Stabrix carbon fiber rehabilitation insoles. Choose your size and support level." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shop — Stabrix Carbon Fiber Insoles</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root {
-      --white: #ffffff; --off-white: #f4f7fb; --light-blue: #e8f2fc;
-      --blue-100: #cce3f7; --blue-500: #2d7dd2; --blue-600: #1f6bbf;
-      --blue-700: #155a9e; --blue-900: #0b2e52; --gray-50: #f9fafb;
-      --gray-100: #f0f4f8; --gray-200: #dde3ea; --gray-400: #94a3b5;
-      --gray-600: #4f6176; --gray-800: #1e2f40; --carbon: #1a1f26;
-      --font-display: 'DM Serif Display', serif; --font-body: 'DM Sans', sans-serif;
-      --radius: 12px;
-      --shadow-sm: 0 1px 3px rgba(15,30,50,0.08);
-      --shadow-md: 0 4px 16px rgba(15,30,50,0.10);
-      --shadow-lg: 0 12px 40px rgba(15,30,50,0.13);
-    }
-    html { scroll-behavior: smooth; }
-    body { font-family: var(--font-body); color: var(--gray-800); background: var(--white); line-height: 1.6; overflow-x: hidden; }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{--white:#ffffff;--off-white:#f4f7fb;--light-blue:#e8f2fc;--blue-100:#cce3f7;--blue-500:#2d7dd2;--blue-600:#1f6bbf;--blue-700:#155a9e;--blue-900:#0b2e52;--gray-50:#f9fafb;--gray-100:#f0f4f8;--gray-200:#dde3ea;--gray-400:#94a3b5;--gray-600:#4f6176;--gray-800:#1e2f40;--font-display:'DM Serif Display',serif;--font-body:'DM Sans',sans-serif;--radius:12px;--shadow-sm:0 1px 3px rgba(15,30,50,0.08);--shadow-md:0 4px 16px rgba(15,30,50,0.10);--shadow-lg:0 12px 40px rgba(15,30,50,0.13)}
+    html{scroll-behavior:smooth}body{font-family:var(--font-body);color:var(--gray-800);background:var(--white);line-height:1.6;overflow-x:hidden}
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 5%;height:72px;background:rgba(255,255,255,0.97);backdrop-filter:blur(16px);border-bottom:1px solid rgba(200,218,240,0.5);box-shadow:var(--shadow-sm)}
+    .nav-logo{font-family:var(--font-display);font-size:1.5rem;color:var(--blue-700);letter-spacing:-0.02em;text-decoration:none}.nav-logo span{color:var(--blue-500)}
+    .nav-links{display:flex;gap:2rem;list-style:none;align-items:center}.nav-links a{text-decoration:none;font-size:0.875rem;font-weight:500;color:var(--gray-600);transition:color 0.2s}.nav-links a:hover{color:var(--blue-600)}.nav-links a.btn-primary{color:var(--white)!important}.nav-links a.active{color:var(--blue-600);font-weight:600}
+    .btn{display:inline-flex;align-items:center;gap:0.5rem;padding:0.75rem 1.75rem;border-radius:9999px;font-family:var(--font-body);font-weight:600;font-size:0.9rem;cursor:pointer;border:none;transition:all 0.22s;text-decoration:none}
+    .btn-primary{background:var(--blue-600);color:var(--white)!important;box-shadow:0 4px 14px rgba(31,107,191,0.35)}.btn-primary:hover{background:var(--blue-700);transform:translateY(-1px)}
+    .btn-outline{background:transparent;border:2px solid var(--blue-500);color:var(--blue-600)}.btn-outline:hover{background:var(--light-blue)}
+    .breadcrumb{padding:100px 7% 0;display:flex;gap:0.5rem;align-items:center;font-size:0.8rem;color:var(--gray-400)}
+    .breadcrumb a{color:var(--gray-400);text-decoration:none;transition:color 0.2s}.breadcrumb a:hover{color:var(--blue-600)}.breadcrumb span{color:var(--blue-600);font-weight:500}
+    .page-header{padding:2rem 7% 0}.page-header h1{font-family:var(--font-display);font-size:clamp(2rem,3.5vw,2.8rem);color:var(--blue-900);letter-spacing:-0.02em;margin-bottom:0.5rem}.page-header p{color:var(--gray-600);font-size:1rem;font-weight:300}
 
-    /* NAV */
-    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 0 5%; height: 72px; background: rgba(255,255,255,0.95); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(200,218,240,0.5); box-shadow: 0 1px 3px rgba(15,30,50,0.06); }
-    .nav-logo { font-family: var(--font-display); font-size: 1.5rem; color: var(--blue-700); letter-spacing: -0.02em; text-decoration: none; }
-    .nav-logo span { color: var(--blue-500); }
-    .nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
-    .nav-links a { text-decoration: none; font-size: 0.875rem; font-weight: 500; color: var(--gray-600); transition: color 0.2s; }
-    .nav-links a:hover { color: var(--blue-600); }
-    .nav-links a.btn-primary { color: var(--white) !important; }
-    .nav-links a.active { color: var(--blue-600); font-weight: 600; }
-    .btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.75rem; border-radius: 9999px; font-family: var(--font-body); font-weight: 600; font-size: 0.9rem; cursor: pointer; border: none; transition: all 0.22s; text-decoration: none; }
-    .btn-primary { background: var(--blue-600); color: var(--white) !important; box-shadow: 0 4px 14px rgba(31,107,191,0.35); }
-    .btn-primary:hover { background: var(--blue-700); box-shadow: 0 6px 20px rgba(31,107,191,0.45); transform: translateY(-1px); }
-    .btn-outline { background: transparent; border: 2px solid var(--blue-500); color: var(--blue-600); }
-    .btn-outline:hover { background: var(--light-blue); }
-    .btn-large { padding: 1rem 2.25rem; font-size: 1rem; }
+    /* PRODUCT HERO — single product */
+    .product-hero{display:grid;grid-template-columns:1fr 1fr;gap:5rem;padding:2.5rem 7% 4rem;align-items:center}
+    .product-hero-img{background:linear-gradient(160deg,var(--blue-900),#0d2340);border-radius:24px;padding:3rem;box-shadow:var(--shadow-lg);position:relative;overflow:hidden}
+    .product-hero-img::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(45deg,transparent,transparent 10px,rgba(255,255,255,0.018) 10px,rgba(255,255,255,0.018) 11px)}
+    .product-hero-info{}
+    .product-badge{display:inline-block;background:var(--light-blue);border:1px solid var(--blue-100);color:var(--blue-700);font-size:0.72rem;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;padding:0.3rem 0.8rem;border-radius:9999px;margin-bottom:1rem}
+    .product-name{font-family:var(--font-display);font-size:2.2rem;color:var(--blue-900);letter-spacing:-0.02em;margin-bottom:0.5rem}
+    .product-tagline{font-size:1rem;color:var(--gray-600);font-weight:300;margin-bottom:1.5rem;line-height:1.7}
+    .product-price-row{display:flex;align-items:baseline;gap:0.75rem;margin-bottom:0.4rem}
+    .product-price{font-family:var(--font-display);font-size:2rem;color:var(--blue-700)}
+    .product-price-compare{font-size:0.9rem;color:var(--gray-400);text-decoration:line-through}
+    .product-price-note{font-size:0.8rem;color:var(--gray-400);margin-bottom:2rem}
+    .product-features{list-style:none;display:flex;flex-direction:column;gap:0.7rem;margin-bottom:2rem}
+    .product-features li{display:flex;align-items:flex-start;gap:0.65rem;font-size:0.88rem;color:var(--gray-800)}
+    .check-sm{width:20px;height:20px;flex-shrink:0;background:var(--blue-600);border-radius:50%;display:flex;align-items:center;justify-content:center;margin-top:1px}
+    .check-sm svg{width:10px;height:10px}
+    .product-cta{display:flex;gap:1rem;flex-wrap:wrap}
 
-    /* BREADCRUMB */
-    .breadcrumb { padding: 100px 7% 0; display: flex; gap: 0.5rem; align-items: center; font-size: 0.8rem; color: var(--gray-400); }
-    .breadcrumb a { color: var(--gray-400); text-decoration: none; transition: color 0.2s; }
-    .breadcrumb a:hover { color: var(--blue-600); }
-    .breadcrumb span { color: var(--blue-600); font-weight: 500; }
+    /* THICKNESS SELECTOR */
+    .thickness-section{background:var(--off-white);padding:5rem 7%;border-top:1px solid var(--gray-200)}
+    .section-title{font-family:var(--font-display);font-size:1.8rem;color:var(--blue-900);letter-spacing:-0.02em;margin-bottom:0.5rem}
+    .section-sub{font-size:0.95rem;color:var(--gray-600);font-weight:300;margin-bottom:2.5rem;max-width:600px;line-height:1.7}
+    .thickness-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+    .t-card{background:var(--white);border:2px solid var(--gray-200);border-radius:20px;padding:2rem 1.75rem;cursor:pointer;transition:all 0.25s;position:relative;overflow:hidden}
+    .t-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px}
+    .t-card.t1::before{background:#90c4f0}.t-card.t2::before{background:var(--blue-500)}.t-card.t3::before{background:var(--blue-700)}
+    .t-card:hover{box-shadow:var(--shadow-md);transform:translateY(-3px);border-color:var(--blue-200,#a8d4f5)}
+    .t-card.selected{border-color:var(--blue-600);box-shadow:var(--shadow-md)}
+    .t-card.recommended{border-color:var(--blue-500)}
+    .t-recommended-badge{display:inline-block;background:var(--blue-600);color:var(--white);font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;padding:0.22rem 0.6rem;border-radius:9999px;margin-bottom:0.75rem}
+    .t-mm{font-family:var(--font-display);font-size:2rem;color:var(--blue-900);line-height:1;margin-bottom:0.2rem}
+    .t-name{font-size:0.88rem;font-weight:600;color:var(--gray-800);margin-bottom:0.6rem}
+    .t-desc{font-size:0.82rem;color:var(--gray-600);line-height:1.6;font-weight:300;margin-bottom:1.1rem}
+    .t-uses{list-style:none;display:flex;flex-direction:column;gap:0.4rem}
+    .t-uses li{font-size:0.79rem;color:var(--gray-600);display:flex;gap:0.4rem}
+    .t-uses li::before{content:'→';color:var(--blue-500);font-weight:600;flex-shrink:0}
+    .t-select-btn{width:100%;margin-top:1.25rem;justify-content:center;border-radius:10px;font-size:0.85rem;padding:0.7rem}
 
-    /* PAGE HEADER */
-    .page-header { padding: 2rem 7% 1rem; }
-    .page-header h1 { font-family: var(--font-display); font-size: clamp(2rem,3.5vw,2.8rem); color: var(--blue-900); letter-spacing: -0.02em; margin-bottom: 0.5rem; }
-    .page-header p { color: var(--gray-600); font-size: 1rem; font-weight: 300; }
+    /* SIZE GUIDE */
+    .size-section{padding:5rem 7%;background:var(--white);border-top:1px solid var(--gray-200)}
+    .size-table{width:100%;border-collapse:collapse;background:var(--white);border-radius:16px;overflow:hidden;box-shadow:var(--shadow-sm);border:1px solid var(--gray-200)}
+    .size-table th{background:var(--blue-900);color:var(--white);font-size:0.82rem;font-weight:600;padding:0.9rem 1.25rem;text-align:left}
+    .size-table td{padding:0.8rem 1.25rem;font-size:0.84rem;color:var(--gray-800);border-bottom:1px solid var(--gray-100)}
+    .size-table tr:last-child td{border-bottom:none}.size-table tr:hover td{background:var(--off-white)}
 
-    /* PRODUCT GRID */
-    .product-grid-section { padding: 2rem 7% 6rem; }
-    .filter-row { display: flex; gap: 0.75rem; margin-bottom: 2.5rem; flex-wrap: wrap; align-items: center; }
-    .filter-label { font-size: 0.82rem; font-weight: 600; color: var(--gray-600); margin-right: 0.25rem; }
-    .filter-chip { padding: 0.45rem 1rem; border-radius: 9999px; border: 1.5px solid var(--gray-200); background: var(--white); font-size: 0.8rem; font-weight: 500; color: var(--gray-600); cursor: pointer; transition: all 0.2s; }
-    .filter-chip:hover, .filter-chip.active { border-color: var(--blue-500); background: var(--light-blue); color: var(--blue-700); }
+    /* COMPARE */
+    .compare-section{background:var(--off-white);padding:5rem 7%;border-top:1px solid var(--gray-200)}
+    .compare-table{width:100%;border-collapse:collapse;background:var(--white);border-radius:16px;overflow:hidden;box-shadow:var(--shadow-sm)}
+    .compare-table th{background:var(--blue-900);color:var(--white);font-size:0.85rem;font-weight:600;padding:1rem 1.25rem;text-align:left}
+    .compare-table th.highlight{background:var(--blue-600)}
+    .compare-table td{padding:0.9rem 1.25rem;font-size:0.85rem;color:var(--gray-800);border-bottom:1px solid var(--gray-100)}
+    .compare-table tr:last-child td{border-bottom:none}.compare-table tr:hover td{background:var(--off-white)}
+    .check{color:#16a34a;font-weight:700}.cross{color:var(--gray-400)}
 
-    .products { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+    footer{background:var(--blue-900);color:rgba(255,255,255,0.5);padding:3rem 7%;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+    .footer-logo{font-family:var(--font-display);font-size:1.3rem;color:var(--white)}.footer-logo span{color:var(--blue-500)}
+    footer p{font-size:0.8rem}.footer-links{display:flex;gap:1.5rem;list-style:none}
+    .footer-links a{color:rgba(255,255,255,0.45);font-size:0.8rem;text-decoration:none;transition:color 0.2s}.footer-links a:hover{color:rgba(255,255,255,0.8)}
 
-    .product-card { background: var(--white); border: 1px solid var(--gray-200); border-radius: 20px; overflow: hidden; transition: all 0.28s; cursor: pointer; }
-    .product-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-5px); border-color: var(--blue-100); }
-    .product-card-img { background: linear-gradient(160deg, var(--blue-900) 0%, #0d2340 100%); padding: 2.5rem 2rem; position: relative; overflow: hidden; }
-    .product-card-img::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255,255,255,0.018) 10px, rgba(255,255,255,0.018) 11px); }
-    .badge { position: absolute; top: 1rem; left: 1rem; background: var(--blue-600); color: var(--white); font-size: 0.68rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 0.28rem 0.7rem; border-radius: 9999px; z-index: 1; }
-    .badge-green { background: #16a34a; }
-    .badge-orange { background: #ea580c; }
-    .product-card-body { padding: 1.5rem; }
-    .product-name { font-family: var(--font-display); font-size: 1.2rem; color: var(--blue-900); margin-bottom: 0.3rem; }
-    .product-tagline { font-size: 0.82rem; color: var(--gray-400); margin-bottom: 1rem; font-weight: 400; }
-    .product-specs { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.25rem; }
-    .spec-chip { background: var(--light-blue); color: var(--blue-700); font-size: 0.7rem; font-weight: 600; padding: 0.25rem 0.6rem; border-radius: 9999px; }
-    .product-price-row { display: flex; align-items: center; justify-content: space-between; }
-    .product-price { font-family: var(--font-display); font-size: 1.5rem; color: var(--blue-700); }
-    .product-price-sub { font-size: 0.75rem; color: var(--gray-400); font-weight: 400; }
-
-    /* COMPARE TABLE */
-    .compare-section { background: var(--off-white); padding: 5rem 7%; border-top: 1px solid var(--gray-200); }
-    .compare-section h2 { font-family: var(--font-display); font-size: 2rem; color: var(--blue-900); letter-spacing: -0.02em; margin-bottom: 2.5rem; }
-    .compare-table { width: 100%; border-collapse: collapse; background: var(--white); border-radius: 16px; overflow: hidden; box-shadow: var(--shadow-sm); }
-    .compare-table th { background: var(--blue-900); color: var(--white); font-size: 0.85rem; font-weight: 600; padding: 1rem 1.25rem; text-align: left; }
-    .compare-table th:first-child { border-radius: 0; }
-    .compare-table td { padding: 0.9rem 1.25rem; font-size: 0.85rem; color: var(--gray-800); border-bottom: 1px solid var(--gray-100); }
-    .compare-table tr:last-child td { border-bottom: none; }
-    .compare-table tr:hover td { background: var(--off-white); }
-    .check { color: #16a34a; font-weight: 700; }
-    .cross { color: #dc2626; }
-
-    /* FOOTER */
-    footer { background: var(--blue-900); color: rgba(255,255,255,0.5); padding: 3rem 7%; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
-    .footer-logo { font-family: var(--font-display); font-size: 1.3rem; color: var(--white); }
-    .footer-logo span { color: var(--blue-500); }
-    footer p { font-size: 0.8rem; }
-    .footer-links { display: flex; gap: 1.5rem; list-style: none; }
-    .footer-links a { color: rgba(255,255,255,0.45); font-size: 0.8rem; text-decoration: none; transition: color 0.2s; }
-    .footer-links a:hover { color: rgba(255,255,255,0.8); }
-
-    @media (max-width: 900px) { .products { grid-template-columns: 1fr 1fr; } }
-    @media (max-width: 600px) {
-      nav { padding: 0 6%; }
-      .nav-links { display: none; }
-      .products { grid-template-columns: 1fr; }
-      .breadcrumb, .page-header, .product-grid-section, .compare-section { padding-left: 6%; padding-right: 6%; }
-    }
+    @media(max-width:900px){.product-hero{grid-template-columns:1fr;gap:2.5rem}.thickness-grid{grid-template-columns:1fr 1fr}}
+    @media(max-width:600px){nav{padding:0 6%}.nav-links{display:none}.product-hero,.thickness-section,.size-section,.compare-section,.breadcrumb,.page-header{padding-left:6%;padding-right:6%}.thickness-grid{grid-template-columns:1fr}}
   </style>
 </head>
 <body>
-
 <nav>
   <a href="index.html" class="nav-logo">Sta<span>brix</span></a>
   <ul class="nav-links">
     <li><a href="index.html#problem">Problem</a></li>
     <li><a href="index.html#solution">Solution</a></li>
     <li><a href="index.html#benefits">Benefits</a></li>
+    <li><a href="index.html#who">Who It's For</a></li>
     <li><a href="product.html" class="active">Shop</a></li>
     <li><a href="checkout.html" class="btn btn-primary" style="padding:0.5rem 1.25rem;font-size:0.83rem;">Checkout</a></li>
   </ul>
 </nav>
 
-<div class="breadcrumb">
-  <a href="index.html">Home</a> › <span>Shop Insoles</span>
-</div>
-
+<div class="breadcrumb"><a href="index.html">Home</a> › <span>Shop Insoles</span></div>
 <div class="page-header">
-  <h1>Shop Stabrix Insoles</h1>
-  <p>Select the right support level for your needs. All insoles ship free.</p>
+  <h1>Stabrix Carbon Fiber Insole</h1>
+  <p>One product. Three thickness levels. Choose the support that matches your recovery.</p>
 </div>
 
-<section class="product-grid-section">
-  <div class="filter-row">
-    <span class="filter-label">Filter:</span>
-    <button class="filter-chip active">All</button>
-    <button class="filter-chip">Recovery</button>
-    <button class="filter-chip">Athletic</button>
-    <button class="filter-chip">Everyday</button>
+<!-- PRODUCT HERO -->
+<section class="product-hero">
+  <div class="product-hero-img">
+    <svg viewBox="0 0 440 280" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;position:relative;z-index:1;">
+      <ellipse cx="220" cy="268" rx="160" ry="13" fill="rgba(0,0,0,0.45)"/>
+      <path d="M75 215 C60 190 48 155 50 118 C52 81 65 56 88 40 C111 24 140 20 170 22 C198 24 240 32 268 44 C292 54 322 68 338 90 C354 112 352 142 342 168 C332 194 308 214 280 224 C252 234 90 232 75 215Z" fill="url(#pg)"/>
+      <clipPath id="pc"><path d="M75 215 C60 190 48 155 50 118 C52 81 65 56 88 40 C111 24 140 20 170 22 C198 24 240 32 268 44 C292 54 322 68 338 90 C354 112 352 142 342 168 C332 194 308 214 280 224 C252 234 90 232 75 215Z"/></clipPath>
+      <g clip-path="url(#pc)" opacity="0.2"><line x1="20" y1="10" x2="230" y2="280" stroke="white" stroke-width="1.2"/><line x1="50" y1="10" x2="260" y2="280" stroke="white" stroke-width="1.2"/><line x1="80" y1="10" x2="290" y2="280" stroke="white" stroke-width="1.2"/><line x1="110" y1="10" x2="320" y2="280" stroke="white" stroke-width="1.2"/><line x1="140" y1="10" x2="350" y2="280" stroke="white" stroke-width="1.2"/><line x1="170" y1="10" x2="380" y2="280" stroke="white" stroke-width="1.2"/><line x1="380" y1="10" x2="170" y2="280" stroke="white" stroke-width="1.2"/><line x1="350" y1="10" x2="140" y2="280" stroke="white" stroke-width="1.2"/><line x1="320" y1="10" x2="110" y2="280" stroke="white" stroke-width="1.2"/><line x1="290" y1="10" x2="80" y2="280" stroke="white" stroke-width="1.2"/><line x1="260" y1="10" x2="50" y2="280" stroke="white" stroke-width="1.2"/></g>
+      <path d="M98 182 C116 170 136 166 158 168 C174 170 186 178 196 188" stroke="rgba(45,125,210,0.85)" stroke-width="3" fill="none" stroke-linecap="round"/>
+      <rect x="118" y="128" width="150" height="6" rx="3" fill="rgba(45,125,210,0.7)"/>
+      <rect x="118" y="138" width="150" height="6" rx="3" fill="rgba(100,180,255,0.4)"/>
+      <ellipse cx="98" cy="190" rx="30" ry="20" fill="rgba(45,125,210,0.2)" stroke="rgba(45,125,210,0.6)" stroke-width="2"/>
+      <path d="M75 215 C60 190 48 155 50 118 C52 81 65 56 88 40" stroke="rgba(255,255,255,0.15)" stroke-width="2" fill="none"/>
+      <circle cx="98" cy="190" r="5" fill="rgba(45,125,210,0.9)"/>
+      <text x="62" y="224" font-family="DM Sans,sans-serif" font-size="8" fill="rgba(255,255,255,0.4)" font-weight="600" letter-spacing="1">HEEL CUP</text>
+      <text x="132" y="116" font-family="DM Sans,sans-serif" font-size="8" fill="rgba(255,255,255,0.4)" font-weight="600" letter-spacing="1">ARCH SUPPORT</text>
+      <defs><linearGradient id="pg" x1="48" y1="20" x2="356" y2="228" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#1d3552"/><stop offset="55%" stop-color="#182c44"/><stop offset="100%" stop-color="#0f1e30"/></linearGradient></defs>
+    </svg>
   </div>
-
-  <div class="products">
-
-    <!-- Product 1 -->
-    <a href="product-detail.html?id=cf1" style="text-decoration:none;">
-      <div class="product-card">
-        <div class="product-card-img">
-          <span class="badge badge-green">Best Seller</span>
-          <svg viewBox="0 0 360 200" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;position:relative;z-index:1;">
-            <ellipse cx="180" cy="192" rx="130" ry="10" fill="rgba(0,0,0,0.4)"/>
-            <path d="M60 155 C50 135 42 108 44 82 C46 56 56 38 74 26 C92 14 116 12 140 14 C164 16 198 22 222 32 C242 40 268 52 280 68 C292 84 290 106 282 126 C274 146 254 162 232 170 C210 178 72 170 60 155Z" fill="url(#g1)"/>
-            <clipPath id="c1"><path d="M60 155 C50 135 42 108 44 82 C46 56 56 38 74 26 C92 14 116 12 140 14 C164 16 198 22 222 32 C242 40 268 52 280 68 C292 84 290 106 282 126 C274 146 254 162 232 170 C210 178 72 170 60 155Z"/></clipPath>
-            <g clip-path="url(#c1)" opacity="0.2">
-              <line x1="20" y1="0" x2="180" y2="200" stroke="white" stroke-width="1"/><line x1="45" y1="0" x2="205" y2="200" stroke="white" stroke-width="1"/><line x1="70" y1="0" x2="230" y2="200" stroke="white" stroke-width="1"/><line x1="95" y1="0" x2="255" y2="200" stroke="white" stroke-width="1"/><line x1="120" y1="0" x2="280" y2="200" stroke="white" stroke-width="1"/><line x1="145" y1="0" x2="305" y2="200" stroke="white" stroke-width="1"/><line x1="300" y1="0" x2="140" y2="200" stroke="white" stroke-width="1"/><line x1="275" y1="0" x2="115" y2="200" stroke="white" stroke-width="1"/><line x1="250" y1="0" x2="90" y2="200" stroke="white" stroke-width="1"/><line x1="225" y1="0" x2="65" y2="200" stroke="white" stroke-width="1"/>
-            </g>
-            <path d="M78 132 C92 122 108 118 124 120 C136 122 144 128 152 136" stroke="rgba(45,125,210,0.8)" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-            <rect x="95" y="88" width="120" height="5" rx="2.5" fill="rgba(45,125,210,0.65)"/>
-            <ellipse cx="78" cy="138" rx="24" ry="16" fill="rgba(45,125,210,0.2)" stroke="rgba(45,125,210,0.55)" stroke-width="1.5"/>
-            <defs><linearGradient id="g1" x1="42" y1="12" x2="292" y2="170" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#243a56"/><stop offset="100%" stop-color="#0f1e30"/></linearGradient></defs>
-          </svg>
-        </div>
-        <div class="product-card-body">
-          <div class="product-name">CF-1 Everyday Support</div>
-          <div class="product-tagline">Mild stabilization for daily comfort</div>
-          <div class="product-specs">
-            <span class="spec-chip">Level 1 Support</span>
-            <span class="spec-chip">6 Sizes</span>
-            <span class="spec-chip">Everyday Use</span>
-          </div>
-          <div class="product-price-row">
-            <div>
-              <div class="product-price">$49</div>
-              <div class="product-price-sub">Free shipping</div>
-            </div>
-            <span class="btn btn-primary" style="padding:0.6rem 1.25rem;font-size:0.82rem;">Select</span>
-          </div>
-        </div>
-      </div>
-    </a>
-
-    <!-- Product 2 -->
-    <a href="product-detail.html?id=cf2" style="text-decoration:none;">
-      <div class="product-card">
-        <div class="product-card-img">
-          <span class="badge">Most Popular</span>
-          <svg viewBox="0 0 360 200" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;position:relative;z-index:1;">
-            <ellipse cx="180" cy="192" rx="130" ry="10" fill="rgba(0,0,0,0.4)"/>
-            <path d="M60 155 C50 135 42 108 44 82 C46 56 56 38 74 26 C92 14 116 12 140 14 C164 16 198 22 222 32 C242 40 268 52 280 68 C292 84 290 106 282 126 C274 146 254 162 232 170 C210 178 72 170 60 155Z" fill="url(#g2)"/>
-            <clipPath id="c2"><path d="M60 155 C50 135 42 108 44 82 C46 56 56 38 74 26 C92 14 116 12 140 14 C164 16 198 22 222 32 C242 40 268 52 280 68 C292 84 290 106 282 126 C274 146 254 162 232 170 C210 178 72 170 60 155Z"/></clipPath>
-            <g clip-path="url(#c2)" opacity="0.2">
-              <line x1="20" y1="0" x2="180" y2="200" stroke="white" stroke-width="1"/><line x1="45" y1="0" x2="205" y2="200" stroke="white" stroke-width="1"/><line x1="70" y1="0" x2="230" y2="200" stroke="white" stroke-width="1"/><line x1="95" y1="0" x2="255" y2="200" stroke="white" stroke-width="1"/><line x1="120" y1="0" x2="280" y2="200" stroke="white" stroke-width="1"/><line x1="145" y1="0" x2="305" y2="200" stroke="white" stroke-width="1"/><line x1="300" y1="0" x2="140" y2="200" stroke="white" stroke-width="1"/><line x1="275" y1="0" x2="115" y2="200" stroke="white" stroke-width="1"/><line x1="250" y1="0" x2="90" y2="200" stroke="white" stroke-width="1"/><line x1="225" y1="0" x2="65" y2="200" stroke="white" stroke-width="1"/>
-            </g>
-            <path d="M78 132 C92 122 108 118 124 120 C136 122 144 128 152 136" stroke="rgba(45,125,210,0.8)" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-            <rect x="95" y="88" width="120" height="5" rx="2.5" fill="rgba(45,125,210,0.65)"/>
-            <ellipse cx="78" cy="138" rx="24" ry="16" fill="rgba(45,125,210,0.2)" stroke="rgba(45,125,210,0.55)" stroke-width="1.5"/>
-            <rect x="95" y="96" width="120" height="5" rx="2.5" fill="rgba(100,180,255,0.35)"/>
-            <defs><linearGradient id="g2" x1="42" y1="12" x2="292" y2="170" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#1d3552"/><stop offset="100%" stop-color="#0f1e30"/></linearGradient></defs>
-          </svg>
-        </div>
-        <div class="product-card-body">
-          <div class="product-name">CF-2 Pro Recovery</div>
-          <div class="product-tagline">Medium support for injury recovery</div>
-          <div class="product-specs">
-            <span class="spec-chip">Level 2 Support</span>
-            <span class="spec-chip">6 Sizes</span>
-            <span class="spec-chip">Recovery</span>
-          </div>
-          <div class="product-price-row">
-            <div>
-              <div class="product-price">$69</div>
-              <div class="product-price-sub">Free shipping</div>
-            </div>
-            <span class="btn btn-primary" style="padding:0.6rem 1.25rem;font-size:0.82rem;">Select</span>
-          </div>
-        </div>
-      </div>
-    </a>
-
-    <!-- Product 3 -->
-    <a href="product-detail.html?id=cf3" style="text-decoration:none;">
-      <div class="product-card">
-        <div class="product-card-img">
-          <span class="badge badge-orange">Max Support</span>
-          <svg viewBox="0 0 360 200" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;position:relative;z-index:1;">
-            <ellipse cx="180" cy="192" rx="130" ry="10" fill="rgba(0,0,0,0.4)"/>
-            <path d="M60 155 C50 135 42 108 44 82 C46 56 56 38 74 26 C92 14 116 12 140 14 C164 16 198 22 222 32 C242 40 268 52 280 68 C292 84 290 106 282 126 C274 146 254 162 232 170 C210 178 72 170 60 155Z" fill="url(#g3)"/>
-            <clipPath id="c3"><path d="M60 155 C50 135 42 108 44 82 C46 56 56 38 74 26 C92 14 116 12 140 14 C164 16 198 22 222 32 C242 40 268 52 280 68 C292 84 290 106 282 126 C274 146 254 162 232 170 C210 178 72 170 60 155Z"/></clipPath>
-            <g clip-path="url(#c3)" opacity="0.2">
-              <line x1="20" y1="0" x2="180" y2="200" stroke="white" stroke-width="1"/><line x1="45" y1="0" x2="205" y2="200" stroke="white" stroke-width="1"/><line x1="70" y1="0" x2="230" y2="200" stroke="white" stroke-width="1"/><line x1="95" y1="0" x2="255" y2="200" stroke="white" stroke-width="1"/><line x1="120" y1="0" x2="280" y2="200" stroke="white" stroke-width="1"/><line x1="145" y1="0" x2="305" y2="200" stroke="white" stroke-width="1"/><line x1="300" y1="0" x2="140" y2="200" stroke="white" stroke-width="1"/><line x1="275" y1="0" x2="115" y2="200" stroke="white" stroke-width="1"/><line x1="250" y1="0" x2="90" y2="200" stroke="white" stroke-width="1"/><line x1="225" y1="0" x2="65" y2="200" stroke="white" stroke-width="1"/>
-            </g>
-            <path d="M78 132 C92 122 108 118 124 120 C136 122 144 128 152 136" stroke="rgba(45,125,210,0.8)" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-            <rect x="95" y="80" width="120" height="5" rx="2.5" fill="rgba(45,125,210,0.65)"/>
-            <rect x="95" y="88" width="120" height="5" rx="2.5" fill="rgba(100,180,255,0.45)"/>
-            <rect x="95" y="96" width="120" height="5" rx="2.5" fill="rgba(45,125,210,0.3)"/>
-            <ellipse cx="78" cy="138" rx="24" ry="16" fill="rgba(45,125,210,0.25)" stroke="rgba(45,125,210,0.7)" stroke-width="2"/>
-            <defs><linearGradient id="g3" x1="42" y1="12" x2="292" y2="170" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#152944"/><stop offset="100%" stop-color="#0a1520"/></linearGradient></defs>
-          </svg>
-        </div>
-        <div class="product-card-body">
-          <div class="product-name">CF-3 Athletic Max</div>
-          <div class="product-tagline">Maximum stabilization for athletes</div>
-          <div class="product-specs">
-            <span class="spec-chip">Level 3 Support</span>
-            <span class="spec-chip">6 Sizes</span>
-            <span class="spec-chip">Athletic</span>
-          </div>
-          <div class="product-price-row">
-            <div>
-              <div class="product-price">$89</div>
-              <div class="product-price-sub">Free shipping</div>
-            </div>
-            <span class="btn btn-primary" style="padding:0.6rem 1.25rem;font-size:0.82rem;">Select</span>
-          </div>
-        </div>
-      </div>
-    </a>
-
+  <div class="product-hero-info">
+    <span class="product-badge">Medical-Grade Rehabilitation Insole</span>
+    <h1 class="product-name">Stabrix Carbon Fiber Insole</h1>
+    <p class="product-tagline">Rigid and semi-rigid carbon fiber stabilization designed to limit harmful foot motion, reduce pain, and support recovery from foot injuries and chronic conditions. Available in three thickness levels to match your stage of recovery.</p>
+    <div class="product-price-row">
+      <span class="product-price" id="hero-price">From $59</span>
+    </div>
+    <div class="product-price-note">Free shipping · 30-day satisfaction guarantee · Easy exchanges</div>
+    <ul class="product-features">
+      <li><span class="check-sm"><svg viewBox="0 0 12 12" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,6 5,9 10,3"/></svg></span>Three thickness options: 0.8mm, 1.0mm, and 1.2mm</li>
+      <li><span class="check-sm"><svg viewBox="0 0 12 12" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,6 5,9 10,3"/></svg></span>8+ sizes with clear fit guidance for men and women</li>
+      <li><span class="check-sm"><svg viewBox="0 0 12 12" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,6 5,9 10,3"/></svg></span>Durable carbon fiber core with soft top cover</li>
+      <li><span class="check-sm"><svg viewBox="0 0 12 12" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,6 5,9 10,3"/></svg></span>Fits sneakers, dress shoes, and work footwear</li>
+      <li><span class="check-sm"><svg viewBox="0 0 12 12" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,6 5,9 10,3"/></svg></span>Fraction of the cost of custom orthotics</li>
+    </ul>
+    <div class="product-cta">
+      <a href="#thickness-select" class="btn btn-primary" style="padding:1rem 2rem;font-size:1rem;">Select Your Thickness <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M8 3l5 5-5 5M3 8h10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <a href="index.html#thickness" class="btn btn-outline" style="padding:1rem 1.5rem;font-size:1rem;">Thickness Guide</a>
+    </div>
   </div>
+</section>
+
+<!-- THICKNESS SELECTOR -->
+<section class="thickness-section" id="thickness-select">
+  <div class="section-title">Choose Your Thickness</div>
+  <p class="section-sub">Not sure which to choose? The 1.0mm is right for most patients. Use the guide below or visit our <a href="index.html#thickness" style="color:var(--blue-600);">full thickness guide</a> on the landing page.</p>
+  <div class="thickness-grid">
+    <div class="t-card t1" onclick="selectThickness(this, '0.8mm', 59)">
+      <div class="t-mm">0.8mm</div>
+      <div class="t-name">Semi-Rigid — Maintenance Support</div>
+      <p class="t-desc">Light-to-medium stabilization with a natural feel. Best for late-stage recovery or managing mild chronic conditions.</p>
+      <ul class="t-uses"><li>Late-stage rehabilitation</li><li>Chronic foot pain management</li><li>Long-hour standing &amp; walking</li><li>Slim and dress footwear</li></ul>
+      <div style="font-family:var(--font-display);font-size:1.3rem;color:var(--blue-700);margin-top:1rem;">$59</div>
+      <a href="product-detail.html?thickness=0.8mm&price=59" class="btn btn-primary t-select-btn">Select 0.8mm</a>
+    </div>
+    <div class="t-card t2 recommended selected" onclick="selectThickness(this, '1.0mm', 69)">
+      <span class="t-recommended-badge">Most Recommended</span>
+      <div class="t-mm">1.0mm</div>
+      <div class="t-name">Rigid — Active Recovery Support</div>
+      <p class="t-desc">Firm stabilization that limits harmful motion while staying comfortable for everyday wear. Ideal for most rehabilitation patients.</p>
+      <ul class="t-uses"><li>Post-surgical rehabilitation</li><li>Plantar fasciitis recovery</li><li>Mid-stage injury recovery</li><li>All everyday footwear types</li></ul>
+      <div style="font-family:var(--font-display);font-size:1.3rem;color:var(--blue-700);margin-top:1rem;">$69</div>
+      <a href="product-detail.html?thickness=1.0mm&price=69" class="btn btn-primary t-select-btn">Select 1.0mm</a>
+    </div>
+    <div class="t-card t3" onclick="selectThickness(this, '1.2mm', 79)">
+      <div class="t-mm">1.2mm</div>
+      <div class="t-name">Maximum Rigid — Acute Support</div>
+      <p class="t-desc">Maximum stabilization for early-stage recovery or significant instability. Highest level of carbon fiber motion control.</p>
+      <ul class="t-uses"><li>Early post-surgical recovery</li><li>Severe instability conditions</li><li>Stress fracture management</li><li>PT-recommended acute care</li></ul>
+      <div style="font-family:var(--font-display);font-size:1.3rem;color:var(--blue-700);margin-top:1rem;">$79</div>
+      <a href="product-detail.html?thickness=1.2mm&price=79" class="btn btn-primary t-select-btn">Select 1.2mm</a>
+    </div>
+  </div>
+</section>
+
+<!-- SIZE GUIDE -->
+<section class="size-section">
+  <div class="section-title">Size Guide</div>
+  <p class="section-sub">Stabrix insoles are available in 8 size ranges to fit men's and women's shoe sizes. Choose the size that matches your shoe size for the best fit.</p>
+  <table class="size-table">
+    <thead><tr><th>Insole Size</th><th>Men's US Shoe Size</th><th>Women's US Shoe Size</th><th>Approx. EU Size</th></tr></thead>
+    <tbody>
+      <tr><td>XS</td><td>4 – 5</td><td>5 – 6</td><td>36 – 37</td></tr>
+      <tr><td>S</td><td>5.5 – 6.5</td><td>6.5 – 7.5</td><td>38 – 39</td></tr>
+      <tr><td>M</td><td>7 – 8</td><td>8 – 9</td><td>40 – 41</td></tr>
+      <tr><td>M/L</td><td>8.5 – 9.5</td><td>9.5 – 10.5</td><td>42 – 43</td></tr>
+      <tr><td>L</td><td>10 – 11</td><td>11 – 12</td><td>44 – 45</td></tr>
+      <tr><td>XL</td><td>11.5 – 12.5</td><td>—</td><td>46 – 47</td></tr>
+      <tr><td>2XL</td><td>13 – 14</td><td>—</td><td>48 – 49</td></tr>
+      <tr><td>3XL</td><td>14.5 – 15</td><td>—</td><td>50 – 51</td></tr>
+    </tbody>
+  </table>
+  <p style="font-size:0.8rem;color:var(--gray-400);margin-top:1rem;">If you are between sizes, we recommend sizing up for the best fit. All insoles can be trimmed at the toe for a precise fit.</p>
 </section>
 
 <!-- COMPARE TABLE -->
 <section class="compare-section">
-  <h2>Compare Models</h2>
+  <div class="section-title">Thickness Comparison</div>
+  <p class="section-sub">All three thickness options use the same carbon fiber insole platform. The difference is the rigidity and amount of motion control provided.</p>
   <table class="compare-table">
     <thead>
       <tr>
         <th>Feature</th>
-        <th>CF-1 Everyday</th>
-        <th>CF-2 Pro Recovery</th>
-        <th>CF-3 Athletic Max</th>
+        <th>0.8mm Semi-Rigid</th>
+        <th class="highlight">1.0mm Rigid ✓ Most Popular</th>
+        <th>1.2mm Max Rigid</th>
       </tr>
     </thead>
     <tbody>
       <tr><td>Carbon Fiber Core</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td></tr>
-      <tr><td>Support Level</td><td>Mild (1)</td><td>Medium (2)</td><td>Maximum (3)</td></tr>
-      <tr><td>Arch Support</td><td>Standard</td><td>Enhanced</td><td>Maximum</td></tr>
-      <tr><td>Heel Cup Depth</td><td>Shallow</td><td>Medium</td><td>Deep</td></tr>
-      <tr><td>Injury Recovery Use</td><td class="cross">–</td><td class="check">✓</td><td class="check">✓</td></tr>
-      <tr><td>Athletic Performance</td><td class="cross">–</td><td class="cross">–</td><td class="check">✓</td></tr>
+      <tr><td>Soft Top Cover</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td></tr>
+      <tr><td>Motion Control Level</td><td>Light – Medium</td><td>Firm</td><td>Maximum</td></tr>
+      <tr><td>Recommended Recovery Stage</td><td>Late / Maintenance</td><td>Mid-stage / Most use</td><td>Early / Acute</td></tr>
+      <tr><td>Post-Surgical Use</td><td class="cross">–</td><td class="check">✓</td><td class="check">✓</td></tr>
       <tr><td>Fits Dress Shoes</td><td class="check">✓</td><td class="check">✓</td><td class="cross">–</td></tr>
-      <tr><td>Available Sizes</td><td>US 5–13</td><td>US 5–13</td><td>US 5–13</td></tr>
-      <tr><td>Price</td><td><strong>$49</strong></td><td><strong>$69</strong></td><td><strong>$89</strong></td></tr>
+      <tr><td>Fits Athletic Shoes</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td></tr>
+      <tr><td>Available Sizes</td><td>XS – 3XL</td><td>XS – 3XL</td><td>XS – 3XL</td></tr>
+      <tr><td>Price</td><td><strong>$59</strong></td><td><strong>$69</strong></td><td><strong>$79</strong></td></tr>
     </tbody>
   </table>
 </section>
@@ -286,21 +225,14 @@
 <footer>
   <div class="footer-logo">Sta<span>brix</span></div>
   <p>© 2025 Stabrix. All rights reserved.</p>
-  <ul class="footer-links">
-    <li><a href="#">Privacy</a></li>
-    <li><a href="#">Terms</a></li>
-    <li><a href="#">Contact</a></li>
-    <li><a href="#">Returns</a></li>
-  </ul>
+  <ul class="footer-links"><li><a href="#">Privacy</a></li><li><a href="#">Terms</a></li><li><a href="#">Contact</a></li><li><a href="#">Returns</a></li></ul>
 </footer>
 
 <script>
-  document.querySelectorAll('.filter-chip').forEach(chip => {
-    chip.addEventListener('click', () => {
-      document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
-      chip.classList.add('active');
-    });
-  });
+  function selectThickness(el, mm, price) {
+    document.querySelectorAll('.t-card').forEach(c => c.classList.remove('selected'));
+    el.classList.add('selected');
+  }
 </script>
 </body>
 </html>
