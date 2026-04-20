@@ -264,7 +264,7 @@
           <button class="qty-btn" onclick="changeQty(1)">+</button>
         </div>
       </div>
-      <div class="cart-item-price" id="item-price">$69</div>
+      <div class="cart-item-price" id="item-price">$49</div>
     </div>
 
     <div class="promo-row">
@@ -273,10 +273,10 @@
     </div>
 
     <div class="summary-lines">
-      <div class="summary-line"><span>Subtotal</span><span id="subtotal">$69.00</span></div>
+      <div class="summary-line"><span>Subtotal</span><span id="subtotal">$49.00</span></div>
       <div class="summary-line"><span>Shipping</span><span class="free-tag">Free</span></div>
-      <div class="summary-line"><span>Tax (est.)</span><span id="tax">$5.52</span></div>
-      <div class="summary-line total"><span>Total</span><span id="total">$74.52</span></div>
+      <div class="summary-line"><span>Tax (est.)</span><span id="tax">$3.92</span></div>
+      <div class="summary-line total"><span>Total</span><span id="total">$52.92</span></div>
     </div>
   </div>
 
@@ -293,7 +293,7 @@
 
 <script>
   let qty = 1;
-  const price = 69;
+  const price = 49;
   function changeQty(delta) {
     qty = Math.max(1, qty + delta);
     document.getElementById('qty').textContent = qty;
